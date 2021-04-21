@@ -42,7 +42,7 @@
 					<textElement>
 						<font fontName="Calibri" size="14"/>
 					</textElement>
-					<text><![CDATA[CEMENTERIO S.A. DE PADUA]]></text>
+					<text><![CDATA[Cematorio Escobar]]></text>
 				</staticText>
 				<textField>
 					<reportElement mode="Transparent" x="290" y="60" width="160" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="c731b59a-9b1c-4e52-8a5d-059e0a6f6282"/>
@@ -56,8 +56,8 @@
 					<text><![CDATA[Revivir Constructora S.R.L. ]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="5" y="70" width="165" height="30" uuid="48dc2fc6-8e8c-4c90-8c45-be67836cccfb"/>
-					<text><![CDATA[Av. Gaspar Campos 4698 (1663) San Miguel. tel: 4451 5824]]></text>
+					<reportElement x="-60" y="70" width="230" height="30" uuid="48dc2fc6-8e8c-4c90-8c45-be67836cccfb"/>
+					<text><![CDATA[Mateo Gelves 2350 - Belén de Escobar , CP: 1625                                                        Tel : 11-4187-2144 / 0348-4514124]]></text>
 				</staticText>
 			</frame>
 			<frame borderSplitType="DrawBorders">

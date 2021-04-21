@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="284e0c88-a4b2-4ff8-98a2-d67b80bcffaf">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="Fecha" class="java.lang.String"/>
@@ -40,15 +40,15 @@
 					<textElement>
 						<font fontName="Calibri" size="14"/>
 					</textElement>
-					<text><![CDATA[CEMENTERIO S.A. DE PADUA]]></text>
+					<text><![CDATA[Cematorio Escobar]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="5" y="43" width="125" height="17" uuid="4645c0df-e3c7-405e-b7c4-d100118e49ff"/>
 					<text><![CDATA[Revivir Constructora S.R.L. ]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="5" y="64" width="165" height="30" uuid="48dc2fc6-8e8c-4c90-8c45-be67836cccfb"/>
-					<text><![CDATA[Av. Gaspar Campos 4698 (1663) San Miguel. tel: 4451 5824]]></text>
+					<reportElement x="5" y="64" width="165" height="46" uuid="48dc2fc6-8e8c-4c90-8c45-be67836cccfb"/>
+					<text><![CDATA[Mateo Gelves 2350 - Belén de Escobar , CP: 1625                             Tel : 11-4187-2144 / 0348-4514124]]></text>
 				</staticText>
 			</frame>
 		</band>
