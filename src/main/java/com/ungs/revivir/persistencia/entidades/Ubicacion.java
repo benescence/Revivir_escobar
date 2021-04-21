@@ -9,7 +9,7 @@ import java.sql.Date;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 
 public class Ubicacion {
-	private Integer ID, nicho, fila, macizo, unidad, sepultura, parcela, mueble, inhumacion, circ;
+	private Integer ID, nicho, fila, macizo, unidad, sepultura, parcela, mueble, pozo, boveda;
 	private Boolean bis, bis_macizo; 
 	private String  cementerio, seccion;
 	private SubSector subsector;
@@ -32,8 +32,8 @@ public class Ubicacion {
 		this.sepultura = sepultura;
 		this.parcela = parcela;
 		this.mueble = mueble;
-		this.inhumacion = inhumacion;
-		this.circ = circ;
+		this.pozo = inhumacion;
+		this.boveda = circ;
 		this.vencimiento = vencimiento;
 	}
 
@@ -133,20 +133,20 @@ public class Ubicacion {
 		this.mueble = mueble;
 	}
 
-	public Integer getInhumacion() {
-		return inhumacion;
+	public Integer getPozo() {
+		return pozo;
 	}
 
-	public void setInhumacion(Integer inhumacion) {
-		this.inhumacion = inhumacion;
+	public void setPozo(Integer inhumacion) {
+		this.pozo = inhumacion;
 	}
 
-	public Integer getCirc() {
-		return circ;
+	public Integer getBoveda() {
+		return boveda;
 	}
 
-	public void setCirc(Integer circ) {
-		this.circ = circ;
+	public void setBoveda(Integer circ) {
+		this.boveda = circ;
 	}
 
 	public String getSeccion() {

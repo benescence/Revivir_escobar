@@ -10,46 +10,17 @@ public class Localizador {
 	
 	public static List<Sector> traerSectores() {
 		List<Sector> ret = new ArrayList<>();
-		for (Sector sector : Sector.values())
-			ret.add(sector);
+		ret.add(Sector.SEPULTURAS);
+		ret.add(Sector.NICHERA);
+		ret.add(Sector.BOVEDA);
 		return ret;
 	}
 	
 	public static List<SubSector> traerSubSectores(Sector sector) {
 		List<SubSector> ret = new ArrayList<>();
-		
-		if (sector == Sector.SEPULTURAS) {
-			ret.add(SubSector.COMPRADA);
-			ret.add(SubSector.ANGELITOS);			
-			ret.add(SubSector.ADULTOS);
-			ret.add(SubSector.INDIGENTES);
-		}
-		
-		else if (sector == Sector.PALMERAS) {
-			ret.add(SubSector.PALMERAS_ATAUD);
-			ret.add(SubSector.PALMERAS_CENIZAS);
-			ret.add(SubSector.PALMERAS_RESTOS);
-			ret.add(SubSector.PALMERAS_SEPULTURAS);
-		}
-
-		else if (sector == Sector.NICHERA) 
-			ret.add(SubSector.NICHERA);
-			
-		else if (sector == Sector.DEPOSITO) {
-			ret.add(SubSector.DEPOSITO1);
-			ret.add(SubSector.DEPOSITO2);
-			ret.add(SubSector.DEPOSITO3);
-		}
-		
-		else if (sector == Sector.CENIZARIO)
-			ret.add(SubSector.CENIZARIO);
-		
-		else if (sector == Sector.BOVEDA)
-			ret.add(SubSector.BOVEDA);
-		
-		else if (sector == Sector.OTRO_CEMENTERIO)
-			ret.add(SubSector.OTRO_CEMENTERIO);
-		
+		ret.add(SubSector.SECCION_A);
+		ret.add(SubSector.SECCION_B);
+		ret.add(SubSector.SECCION_C);
 		return ret;
 	}
 	
