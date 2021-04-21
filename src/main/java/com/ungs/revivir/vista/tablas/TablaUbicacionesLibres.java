@@ -30,7 +30,7 @@ public class TablaUbicacionesLibres extends JTable {
 
 		for (Ubicacion elemento : lista) {
 			Object[] fila = {
-					elemento.getCirc(),
+					elemento.getBoveda(),
 					elemento.getSeccion(),
 					elemento.getMacizo(),
 					elemento.getParcela(),
@@ -39,7 +39,7 @@ public class TablaUbicacionesLibres extends JTable {
 					elemento.getNicho(),
 					elemento.getMueble(),
 					elemento.getSepultura(),
-					elemento.getInhumacion(),
+					elemento.getPozo(),
 					Formato.fallecidoCod(elemento)
 					};
 			modelo.addRow(fila);

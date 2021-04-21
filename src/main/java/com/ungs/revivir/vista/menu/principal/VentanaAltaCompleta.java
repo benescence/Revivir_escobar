@@ -36,7 +36,7 @@ public class VentanaAltaCompleta extends Ventana {
 	private EntradaLista<TipoFallecimiento> inTipo;
 
 	// DATOS DE UBICACION
-	private EntradaNumero inUnidad, inFila, inMacizo, inNicho, inSepultura, inParcela, inInhumacion, inCirc, inMueble;
+	private EntradaNumero inUnidad, inFila, inMacizo, inNicho, inSepultura, inParcela, inPozo, inBoveda, inMueble;
 	private EntradaTexto inSeccion, inCementerio;
 	private JCheckBox inCheckMacizo, inCheckBis;
 	private EntradaLista<Sector> inSector;
@@ -150,7 +150,7 @@ public class VentanaAltaCompleta extends Ventana {
 		Dimension dimEntrada = new Dimension(200, 25);
 		Dimension dimEntradaVencimiento = new Dimension(570, 25);
 
-		inCirc = new EntradaNumero("Circ", dimTexto2, dimEntrada);
+		inBoveda = new EntradaNumero("Boveda", dimTexto2, dimEntrada);
 		inSeccion = new EntradaTexto("Sección", dimTexto1, dimEntrada);
 		inMacizo = new EntradaNumero("Macizo", dimTexto1, dimEntrada);
 		inParcela = new EntradaNumero("Parcela", dimTexto2, dimEntrada);
@@ -159,7 +159,7 @@ public class VentanaAltaCompleta extends Ventana {
 		inFila = new EntradaNumero("Fila", dimTexto2, dimEntrada);
 		inMueble = new EntradaNumero("Mueble", dimTexto2, dimEntrada);
 		inSepultura = new EntradaNumero("Sepultura", dimTexto1, dimEntrada);
-		inInhumacion = new EntradaNumero("Inhumación", dimTexto1, dimEntrada);
+		inPozo = new EntradaNumero("Pozo", dimTexto1, dimEntrada);
 		inCementerio = new EntradaTexto("Cementerio", dimTexto1, dimEntrada);
 		inVencimiento = new EntradaFecha(Almanaque.hoy(), "Vencimiento", dimTexto1, dimEntradaVencimiento);
 
@@ -188,7 +188,7 @@ public class VentanaAltaCompleta extends Ventana {
 		panelIzquierdo.setBorder(new EmptyBorder(10, 0, 0, 0));
 		panelIzquierdo.add(inSector);
 		panelIzquierdo.add(inSubSector);
-		panelIzquierdo.add(inCirc);
+		panelIzquierdo.add(inBoveda);
 		panelIzquierdo.add(inSeccion);
 		panelIzquierdo.add(inMacizo);
 		panelIzquierdo.add(inParcela);
@@ -200,7 +200,7 @@ public class VentanaAltaCompleta extends Ventana {
 		panelDerecho.add(inFila);
 		panelDerecho.add(inMueble);
 		panelDerecho.add(inSepultura);
-		panelDerecho.add(inInhumacion);
+		panelDerecho.add(inPozo);
 		panelDerecho.add(panelCheck);
 		panelDerecho.add(inCementerio);
 		
@@ -217,75 +217,23 @@ public class VentanaAltaCompleta extends Ventana {
 	}
 	
 	private void seleccionarSubSector() {
-		SubSector subSector = (SubSector) inSubSector.getComboBox().getSelectedItem();
+		
+		Sector sector = (Sector) inSector.getComboBox().getSelectedItem();
 		habilitarCamposUbicacion(false);
 		
-		if (subSector == SubSector.ADULTOS) {
-			inSeccion.habilitado(true);
-			inMacizo.habilitado(true);
-			inUnidad.habilitado(true);
+		if (sector == Sector.SEPULTURAS) {
+			inFila.habilitado(true);
 			inSepultura.habilitado(true);
-			inCheckMacizo.setEnabled(true);
-			inCheckBis.setEnabled(true);
+			inPozo.habilitado(true);
+		}
 
-		}else if (subSector == SubSector.ANGELITOS) {
-			inSeccion.habilitado(true);
-			inMacizo.habilitado(true);
-			inUnidad.habilitado(true);
-			inSepultura.habilitado(true);
-			inCheckMacizo.setEnabled(true);
-			inCheckBis.setEnabled(true); 
-			
-		}else if (subSector == SubSector.COMPRADA) {
-			inSeccion.habilitado(true);
-			inMacizo.habilitado(true);
-			inUnidad.habilitado(true);
-			inSepultura.habilitado(true);
-			inCheckMacizo.setEnabled(true);
-			inCheckBis.setEnabled(true);
-			inParcela.habilitado(true);
-			inCirc.habilitado(true);
-			
-		}else if (subSector == SubSector.INDIGENTES) {
-			inSeccion.habilitado(true);
-			inMacizo.habilitado(true);
-			inSepultura.habilitado(true);
-			inInhumacion.habilitado(true);
-
-		} else if (subSector == SubSector.PALMERAS_ATAUD
-				|| subSector == SubSector.PALMERAS_CENIZAS
-				|| subSector == SubSector.PALMERAS_RESTOS) {
-			
+		if (sector == Sector.NICHERA) {
+			inFila.habilitado(true);
 			inNicho.habilitado(true);
-			inFila.habilitado(true);
-			
-		} else if (subSector == SubSector.PALMERAS_SEPULTURAS) {
-			inSepultura.habilitado(true);
-			
-		} else if (subSector == SubSector.NICHERA) {
-			inCirc.habilitado(true);
-			inSeccion.habilitado(true);
-			inFila.habilitado(true);
-			inMacizo.habilitado(true);
-			inParcela.habilitado(true);
-			inFila.habilitado(true);
-			inUnidad.habilitado(true);
+		}
 
-		} else if (subSector == SubSector.CENIZARIO) {
-			inMueble.habilitado(true);
-			inNicho.habilitado(true);
-			
-		} else if (subSector == SubSector.BOVEDA) {
-			inCirc.habilitado(true);
-			inSeccion.habilitado(true);
-			inMacizo.habilitado(true);
-			inParcela.habilitado(true);
-			inUnidad.habilitado(true);
-			inCheckBis.setEnabled(true);
-			inCheckMacizo.setEnabled(true);
-		
-		} else if (subSector == SubSector.OTRO_CEMENTERIO) {
-			inCementerio.habilitado(true);
+		if (sector == Sector.BOVEDA) {
+			inBoveda.habilitado(true);
 		}
 		
 	}
@@ -296,10 +244,10 @@ public class VentanaAltaCompleta extends Ventana {
 		inMacizo.habilitado(habilitado);
 		inUnidad.habilitado(habilitado);
 		inSepultura.habilitado(habilitado);
-		inInhumacion.habilitado(habilitado);
+		inPozo.habilitado(habilitado);
 		inNicho.habilitado(habilitado);
 		inFila.habilitado(habilitado);
-		inCirc.habilitado(habilitado);
+		inBoveda.habilitado(habilitado);
 		inParcela.habilitado(habilitado);
 		inMueble.habilitado(habilitado);
 		inCheckMacizo.setEnabled(habilitado);
@@ -422,11 +370,11 @@ public class VentanaAltaCompleta extends Ventana {
 	}
 
 	public EntradaNumero getInhumacion() {
-		return inInhumacion;
+		return inPozo;
 	}
 
 	public EntradaNumero getCirc() {
-		return inCirc;
+		return inBoveda;
 	}
 
 	public EntradaNumero getMueble() {

@@ -138,9 +138,9 @@ public class UbicacionOBDTest {
 			mueble = obj1.getMueble().equals(obj2.getMueble());
 		assertTrue(mueble);
 			
-		boolean inhumacion = (obj1.getInhumacion() == null) && (obj2.getInhumacion() == null);
-		if(obj1.getInhumacion()!= null && obj2.getInhumacion() != null)
-			inhumacion = obj1.getInhumacion().equals(obj2.getInhumacion());
+		boolean inhumacion = (obj1.getPozo() == null) && (obj2.getPozo() == null);
+		if(obj1.getPozo()!= null && obj2.getPozo() != null)
+			inhumacion = obj1.getPozo().equals(obj2.getPozo());
 		assertTrue(inhumacion);
 			
 		boolean fila = (obj1.getFila() == null) && (obj2.getFila() == null);
@@ -148,9 +148,9 @@ public class UbicacionOBDTest {
 			fila = obj1.getFila().equals(obj2.getFila());
 		assertTrue(fila);
 			
-		boolean circ = (obj1.getCirc() == null) && (obj2.getCirc() == null);
-		if(obj1.getCirc()!= null && obj2.getCirc() != null)
-			circ = obj1.getCirc().equals(obj2.getCirc());
+		boolean circ = (obj1.getBoveda() == null) && (obj2.getBoveda() == null);
+		if(obj1.getBoveda()!= null && obj2.getBoveda() != null)
+			circ = obj1.getBoveda().equals(obj2.getBoveda());
 		assertTrue(circ);
 			
 		boolean bisMacizo = (obj1.getBis_macizo() == null) && (obj2.getBis_macizo() == null);
@@ -203,17 +203,17 @@ public class UbicacionOBDTest {
 		if(obj1.getMueble() != null && obj2.getMueble() != null)
 			mueble = obj1.getMueble().equals(obj2.getMueble());
 		
-		boolean inhumacion = (obj1.getInhumacion() == null) && (obj2.getInhumacion() == null);
-		if(obj1.getInhumacion()!= null && obj2.getInhumacion() != null)
-			inhumacion = obj1.getInhumacion().equals(obj2.getInhumacion());
+		boolean inhumacion = (obj1.getPozo() == null) && (obj2.getPozo() == null);
+		if(obj1.getPozo()!= null && obj2.getPozo() != null)
+			inhumacion = obj1.getPozo().equals(obj2.getPozo());
 		
 		boolean fila = (obj1.getFila() == null) && (obj2.getFila() == null);
 		if(obj1.getFila()!= null && obj2.getFila() != null)
 			fila = obj1.getFila().equals(obj2.getFila());
 		
-		boolean circ = (obj1.getCirc() == null) && (obj2.getCirc() == null);
-		if(obj1.getCirc()!= null && obj2.getCirc() != null)
-			circ = obj1.getCirc().equals(obj2.getCirc());
+		boolean circ = (obj1.getBoveda() == null) && (obj2.getBoveda() == null);
+		if(obj1.getBoveda()!= null && obj2.getBoveda() != null)
+			circ = obj1.getBoveda().equals(obj2.getBoveda());
 		
 		boolean bisMacizo = (obj1.getBis_macizo() == null) && (obj2.getBis_macizo() == null);
 		if(obj1.getBis_macizo()!= null && obj2.getBis_macizo() != null)

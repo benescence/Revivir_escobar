@@ -6,7 +6,9 @@ import com.ungs.revivir.persistencia.entidades.Ubicacion;
 public class VerificadorUbicacion {
 	
 	public static Ubicacion verificar(Ubicacion verificar) throws Exception {
-
+		
+		return verificar;
+/*
 		// Obtengo todos sus valores
 		SubSector subSector = verificar.getSubsector();
 		Integer nicho = verificar.getNicho();		
@@ -20,8 +22,8 @@ public class VerificadorUbicacion {
 		Integer sepultura = verificar.getSepultura();		
 		Integer parcela = verificar.getParcela();
 		Integer mueble = verificar.getMueble();	
-		Integer inhumacion= verificar.getInhumacion();		
-		Integer circ = verificar.getCirc();		
+		Integer inhumacion= verificar.getPozo();		
+		Integer circ = verificar.getBoveda();		
 		
 		// Anulo sus valores
 		verificar.setCementerio(null);
@@ -34,8 +36,8 @@ public class VerificadorUbicacion {
 		verificar.setBis_macizo(null);
 		verificar.setParcela(null);
 		verificar.setMueble(null);
-		verificar.setInhumacion(null);
-		verificar.setCirc(null);
+		verificar.setPozo(null);
+		verificar.setBoveda(null);
 		verificar.setSepultura(null);
 		
 		// *****************  VERIFICO CASO A CASO ***********************************************************************
@@ -119,7 +121,7 @@ public class VerificadorUbicacion {
 				throw new Exception("Se encontraron los siguientes errores en el formulario: "+mensaje);
 			
 			verificar.setSeccion(seccion);
-			verificar.setCirc(circ);
+			verificar.setBoveda(circ);
 			verificar.setMacizo(macizo);
 			verificar.setUnidad(unidad);
 			verificar.setSepultura(sepultura);
@@ -204,7 +206,7 @@ public class VerificadorUbicacion {
 			if (!mensaje.equals(""))
 				throw new Exception("Se encontraron los siguientes errores en el formulario: "+mensaje);
 			
-			verificar.setCirc(circ);
+			verificar.setBoveda(circ);
 			verificar.setSeccion(seccion);
 			verificar.setMacizo(macizo);
 			verificar.setUnidad(unidad);
@@ -238,7 +240,7 @@ public class VerificadorUbicacion {
 			if (!mensaje.equals(""))
 				throw new Exception("Se encontraron los siguientes errores en el formulario: "+mensaje);
 			
-			verificar.setCirc(circ);
+			verificar.setBoveda(circ);
 			verificar.setFila(fila);
 			verificar.setSeccion(seccion);
 			verificar.setMacizo(macizo);
@@ -269,7 +271,7 @@ public class VerificadorUbicacion {
 			verificar.setSeccion(seccion);
 			verificar.setMacizo(macizo);
 			verificar.setSepultura(sepultura);
-			verificar.setInhumacion(inhumacion);
+			verificar.setPozo(inhumacion);
 			return verificar;
 		}
 
@@ -287,7 +289,7 @@ public class VerificadorUbicacion {
 			return verificar;
 		}
 		
-		return null;
+		return null;*/
 	}	
 	
 }
