@@ -66,7 +66,7 @@ public class ControladorUbicacionesLibres implements ControladorInterno {
 		Integer unidadMin = ventana.getUnidad().getValorMin();
 		Integer unidadMax = ventana.getUnidad().getValorMax();
 
-		Integer nichoMin = ventana.getNicho().getValorMax();
+		Integer nichoMin = ventana.getNicho().getValorMin();
 		Integer nichoMax = ventana.getNicho().getValorMax();
 
 		Integer muebleMin = ventana.getMueble().getValorMax();

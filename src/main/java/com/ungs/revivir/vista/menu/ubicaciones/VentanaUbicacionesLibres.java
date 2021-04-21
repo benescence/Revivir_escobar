@@ -78,7 +78,7 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		inSubsector.getComboBox().setSelectedIndex(0);
 
 		// Inicializo el esto de las entradas
-		inCirc = new EntradaNumeroEntre("Circ", dimTexto, dimEntradaDoble);
+		inCirc = new EntradaNumeroEntre("Bóveda", dimTexto, dimEntradaDoble);
 		inMacizo = new EntradaNumeroEntre("Macizo", dimTexto, dimEntradaDoble);
 		inParcela = new EntradaNumeroEntre("Parcela", dimTexto, dimEntradaDoble);
 		inFila = new EntradaNumeroEntre("Fila", dimTexto, dimEntradaDoble);
@@ -86,7 +86,7 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		inNicho = new EntradaNumeroEntre("Nicho", dimTexto, dimEntradaDoble);
 		inMueble = new EntradaNumeroEntre("Mueble", dimTexto, dimEntradaDoble);
 		inSepultura = new EntradaNumeroEntre("Sepultura", dimTexto, dimEntradaDoble);
-		inInhumacion= new EntradaNumeroEntre("Inhumacion", dimTexto, dimEntradaDoble);
+		inInhumacion= new EntradaNumeroEntre("Pozo", dimTexto, dimEntradaDoble);
 		inSeccion = new EntradaTexto("Seccion", dimTexto, dimEntrada);
 
 		PanelVertical ret1 = new PanelVertical();
