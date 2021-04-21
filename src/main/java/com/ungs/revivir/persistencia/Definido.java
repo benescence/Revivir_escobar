@@ -57,6 +57,24 @@ public class Definido {
 			ret = 14;
 		else if (subsector == SubSector.OTRO_CEMENTERIO)
 			ret = 15;
+		else if (subsector == SubSector.SECCION_A)
+			ret = 16;
+		else if (subsector == SubSector.SECCION_B)
+			ret = 17;
+		else if (subsector == SubSector.SECCION_C)
+			ret = 18;
+		else if (subsector == SubSector.SECCION_A)
+			ret = 19;
+		else if (subsector == SubSector.SECCION_B)
+			ret = 20;
+		else if (subsector == SubSector.SECCION_C)
+			ret = 21;
+		else if (subsector == SubSector.SECCION_A)
+			ret = 22;
+		else if (subsector == SubSector.SECCION_B)
+			ret = 23;
+		else if (subsector == SubSector.SECCION_C)
+			ret = 24;
 		return ret;
 	}
 	
@@ -93,6 +111,24 @@ public class Definido {
 			ret = SubSector.DEPOSITO3;
 		else if (subsector == 15)
 			ret = SubSector.OTRO_CEMENTERIO;
+		else if (subsector == 16)
+			ret = SubSector.SECCION_A;
+		else if (subsector == 17)
+			ret = SubSector.SECCION_B;
+		else if (subsector == 18)
+			ret = SubSector.SECCION_C;
+		else if (subsector == 19)
+			ret = SubSector.SECCION_A;
+		else if (subsector == 20)
+			ret = SubSector.SECCION_B;
+		else if (subsector == 21)
+			ret = SubSector.SECCION_C;
+		else if (subsector == 22)
+			ret = SubSector.SECCION_A;
+		else if (subsector == 23)
+			ret = SubSector.SECCION_B;
+		else if (subsector == 24)
+			ret = SubSector.SECCION_C;
 		return ret;
 	}
 	

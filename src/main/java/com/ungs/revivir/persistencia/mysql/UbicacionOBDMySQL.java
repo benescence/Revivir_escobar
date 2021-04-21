@@ -22,7 +22,6 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 	
 	@Override
 	public void insert(Ubicacion ubicacion) {
-		System.out.println(ubicacion.getSubsector());
 		String cementerio = (ubicacion.getCementerio() != null) ? "'"+ubicacion.getCementerio()+"'" : null;
 		String seccion = (ubicacion.getSeccion() != null) ? "'"+ubicacion.getSeccion()+"'" : null;
 		String vencimiento = (ubicacion.getVencimiento() != null) ? "'"+ubicacion.getVencimiento()+"'" : null;
@@ -43,7 +42,6 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 				+", "+ubicacion.getBoveda()
 				+", "+vencimiento;
 		String sql = "insert into "+tabla+"("+campos+") values("+valores+");";
-		System.out.println(sql);
 		ejecutarSQL(sql);		
 	}
 

@@ -97,7 +97,7 @@ public class ControladorFallecidoAM implements ControladorExterno {
 		Integer boveda = (ventana.getInBoveda().isEnabled() ? ventana.getInBoveda().getValor() : null);
 		Integer pozo = (ventana.getPozo().isEnabled() ? ventana.getPozo().getValor(): null);
 		Date vencimiento = ventana.getVencimiento().getValor();
-
+		
 		Ubicacion ubicacion = new Ubicacion(-1, subsector, otroCementerio, nicho, fila, seccion,
 				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, boveda, pozo, vencimiento);
 		
