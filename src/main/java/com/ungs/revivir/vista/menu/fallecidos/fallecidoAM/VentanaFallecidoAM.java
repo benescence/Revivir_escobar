@@ -231,9 +231,6 @@ public class VentanaFallecidoAM extends Ventana {
 			inSubSector.getComboBox().addItem(elemento);
 	}
 
-	/*public JTextField getDNIFallecido() {
-		return inDNI.getTextField();
-	}*/
 	public JTextField getCod_Fallecido() {
 		return inCod.getTextField();
 	}

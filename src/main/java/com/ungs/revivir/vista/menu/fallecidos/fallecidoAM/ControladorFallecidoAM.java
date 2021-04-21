@@ -99,7 +99,7 @@ public class ControladorFallecidoAM implements ControladorExterno {
 		Date vencimiento = ventana.getVencimiento().getValor();
 		
 		Ubicacion ubicacion = new Ubicacion(-1, subsector, otroCementerio, nicho, fila, seccion,
-				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, boveda, pozo, vencimiento);
+				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, pozo, boveda, vencimiento);
 		
 		return Verificador.ubicacion(ubicacion);		
 	}	

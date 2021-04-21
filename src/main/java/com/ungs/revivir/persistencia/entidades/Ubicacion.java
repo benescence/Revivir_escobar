@@ -18,7 +18,7 @@ public class Ubicacion {
 	
 	public Ubicacion(Integer ID, SubSector subsector, String cementerio, Integer nicho, Integer fila,
 			String seccion, Integer macizo, Integer unidad, Boolean bis, Boolean bis_macizo, Integer sepultura,
-			Integer parcela, Integer mueble, Integer inhumacion, Integer circ, Date vencimiento) {
+			Integer parcela, Integer mueble, Integer pozo, Integer boveda, Date vencimiento) {
 		this.ID = ID;
 		this.subsector = subsector;
 		this.cementerio = cementerio;
@@ -32,8 +32,8 @@ public class Ubicacion {
 		this.sepultura = sepultura;
 		this.parcela = parcela;
 		this.mueble = mueble;
-		this.pozo = inhumacion;
-		this.boveda = circ;
+		this.pozo = pozo;
+		this.boveda = boveda;
 		this.vencimiento = vencimiento;
 	}
 
