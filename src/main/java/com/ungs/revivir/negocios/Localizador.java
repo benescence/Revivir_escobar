@@ -24,4 +24,24 @@ public class Localizador {
 		return ret;
 	}
 	
+	public static SubSector mapearSector(Sector sector) {
+		if (sector == Sector.SEPULTURAS)
+			return SubSector.SECCION_A;
+		if (sector == Sector.BOVEDA)
+			return SubSector.SECCION_B;
+		if (sector == Sector.NICHERA)
+			return SubSector.SECCION_C;
+		return null;
+	}
+
+	public static Sector mapearSector(SubSector subsector) {
+		if (subsector == SubSector.SECCION_A)
+			return Sector.SEPULTURAS;
+		if (subsector == SubSector.SECCION_B)
+			return Sector.BOVEDA;
+		if (subsector == SubSector.SECCION_C)
+			return Sector.NICHERA;
+		return null;
+	}	
+	
 }

@@ -1,11 +1,6 @@
 package com.ungs.revivir.persistencia.entidades;
 
-
-
-
-
 import java.sql.Date;
-
 import com.ungs.revivir.persistencia.definidos.SubSector;
 
 public class Ubicacion {
@@ -14,7 +9,6 @@ public class Ubicacion {
 	private String  cementerio, seccion;
 	private SubSector subsector;
 	private Date vencimiento;
-	
 	
 	public Ubicacion(Integer ID, SubSector subsector, String cementerio, Integer nicho, Integer fila,
 			String seccion, Integer macizo, Integer unidad, Boolean bis, Boolean bis_macizo, Integer sepultura,
@@ -158,9 +152,8 @@ public class Ubicacion {
 	}
 
 	public Date getVencimiento() {
-		
-		
 		return vencimiento;}
+	
 	public void setVencimiento(Date vencimiento) {
 		this.vencimiento = vencimiento;
 	}

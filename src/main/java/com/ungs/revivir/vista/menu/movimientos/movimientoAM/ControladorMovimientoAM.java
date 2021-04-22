@@ -4,12 +4,14 @@ import java.sql.Date;
 import java.util.List;
 
 import com.ungs.revivir.negocios.Almanaque;
+import com.ungs.revivir.negocios.Localizador;
 import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.negocios.busqueda.Relacionador;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.negocios.manager.MovimientoManager;
 import com.ungs.revivir.negocios.manager.UbicacionManager;
 import com.ungs.revivir.negocios.verificador.Verificador;
+import com.ungs.revivir.persistencia.definidos.Sector;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Movimiento;
@@ -50,7 +52,6 @@ public class ControladorMovimientoAM implements FallecidoSeleccionable, Controla
 	private void cargarFallecido() {
 		ventana.requestFocusInWindow();
 		
-		//String DNI = ventana.getDNIFal().getTextField().getText();
 		Integer cod_fallecido = Integer.parseInt(ventana.getCODFal().getTextField().getText());
 		if (!Validador.cod_fallecido(Integer.toString(cod_fallecido))) {
 			Popup.mostrar("El codigo solo puede consistir de numeros");
@@ -88,18 +89,10 @@ public class ControladorMovimientoAM implements FallecidoSeleccionable, Controla
 			// Creo una nueva ubicacion con los datos ingresados
 			UbicacionManager.guardar(verificada);
 			Ubicacion nuevaUbicacion = UbicacionManager.traerMasReciente();
-			
+
 			// Le coloco su nueva ubicacion al fallecido
 			fallecido.setUbicacion(nuevaUbicacion.getID());
-
-			System.out.println(fallecido.getNombre());
-			System.out.println(fallecido.getUbicacion());
-			
-			//FallecidoManager.modificar(fallecido);
-			System.out.println(fallecido.getUbicacion());
-
 			FallecidoManager.modificarUbicacion(fallecido);
-
 			
 			// Si nadie esta usando la otra ubicacion la borro
 			List<Fallecido> fallecidosAsociados = Relacionador.traerFallecidos(ubicacionActual);
@@ -134,16 +127,16 @@ public class ControladorMovimientoAM implements FallecidoSeleccionable, Controla
 		this.fallecido = fallecido;
 		ventana.getNombreFal().getTextField().setText(fallecido.getNombre());
 		ventana.getApellidoFal().getTextField().setText(fallecido.getApellido());
-		//ventana.getDNIFal().getTextField().setText(fallecido.getDNI());
 		ventana.getCODFal().getTextField().setText(Integer.toString(fallecido.getCod_fallecido()));
 	}
 	
 	private Ubicacion traerUbicacionVerificada() throws Exception {
-		SubSector subsector = (SubSector) ventana.getSubSector().getComboBox().getSelectedItem();
+		Sector sector = (Sector) ventana.getSector().getComboBox().getSelectedItem();
+		SubSector subsector = Localizador.mapearSector(sector);
+
 		String cementerio = ventana.getCementerio().getValor();
 		Integer nicho = ventana.getNicho().getValor();
 		Integer fila = ventana.getFila().getValor();
-		String seccion = ventana.getSeccion().getValor();
 		Integer macizo = ventana.getMacizo().getValor();
 		Integer unidad = ventana.getUnidad().getValor();
 		
@@ -161,6 +154,13 @@ public class ControladorMovimientoAM implements FallecidoSeleccionable, Controla
 		Integer inhumacion = ventana.getInhumacion().getValor();
 		Integer circ = ventana.getCirc().getValor();
 		Date vencimiento = ventana.getVencimiento().getValor();
+		
+		// La seccion es siempre mayuscula y solo puede ser una letra
+		String seccion = (ventana.getSeccion().isEnabled() ? ventana.getSeccion().getTextField().getText() : null);
+		if (seccion != null && seccion.length() == 1)
+			seccion = seccion.toUpperCase().charAt(0) + "";
+		else 
+			throw new Exception("La seccion debe ser una letra: ["+seccion+"]");
 
 		Ubicacion ubicacion = new Ubicacion(-1, subsector, cementerio, nicho, fila, seccion,
 				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ, vencimiento);

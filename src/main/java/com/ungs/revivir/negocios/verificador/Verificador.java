@@ -243,6 +243,7 @@ public class Verificador {
 		else
 			return texto;
 	}
+	
 	public static Integer anularInt(Integer num) {
 		if (num == null )
 			return null;

@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 import com.ungs.revivir.negocios.Almanaque;
 import com.ungs.revivir.negocios.Localizador;
 import com.ungs.revivir.persistencia.definidos.Sector;
-import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Movimiento;
 import com.ungs.revivir.vista.util.Boton;
 import com.ungs.revivir.vista.util.TextoCentrado;
@@ -26,17 +25,16 @@ public class VentanaMovimientoAM extends Ventana {
 	private Boton btnAceptar, btnCancelar;
 	private EntradaTexto inObservaciones, inCausa;
 	private EntradaFecha inFecha;
-	private EntradaTexto inNombreFal, inApellidoFal, /*inDNIFal*/ inCODFal;
+	private EntradaTexto inNombreFal, inApellidoFal, inCODFal;
 	private Boton btnCargarFallecido, btnSelFallecido;
 	
 	// DATOS DE UBICACION
 	private EntradaTexto inSeccion, inCementerio;
-	private EntradaNumero inMacizo, inUnidad, inSepultura, inInhumacion,
-	inNicho, inFila, inCirc, inParcela, inMueble;
+	private EntradaNumero inMacizo, inUnidad, inSepultura, pozo,
+	inNicho, inFila, boveda, inParcela, inMueble;
 	private JCheckBox inCheckMacizo, inCheckBis;
 	private EntradaFecha inVencimiento;
 	private EntradaLista<Sector> inSector;
-	private EntradaLista<SubSector> inSubSector;
 	
 	public VentanaMovimientoAM() {
 		super("Alta de translado de un fallecido", 500, 500);
@@ -101,7 +99,6 @@ public class VentanaMovimientoAM extends Ventana {
 		
 		inNombreFal = new EntradaTexto("Nombres", dimTexto, dimEntrada);
 		inApellidoFal = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
-		//inDNIFal = new EntradaTexto("DNI", dimTexto, dimEntrada);
 		inCODFal = new EntradaTexto("Cod Fallecido", dimTexto, dimEntrada);
 		inNombreFal.habilitado(false);
 		inApellidoFal.habilitado(false);
@@ -121,7 +118,6 @@ public class VentanaMovimientoAM extends Ventana {
 		ret.add(titulo);
 		ret.add(inNombreFal);
 		ret.add(inApellidoFal);
-		//ret.add(inDNIFal);
 		ret.add(inCODFal);
 		ret.add(panelBotones);
 		return ret;
@@ -133,7 +129,7 @@ public class VentanaMovimientoAM extends Ventana {
 		Dimension dimEntrada = new Dimension(150, 25);
 		Dimension dimEntradaVencimiento = new Dimension(430, 25);
 
-		inCirc = new EntradaNumero("Circ", dimTexto2, dimEntrada);
+		boveda = new EntradaNumero("Bóveda", dimTexto2, dimEntrada);
 		inSeccion = new EntradaTexto("Sección", dimTexto1, dimEntrada);
 		inMacizo = new EntradaNumero("Macizo", dimTexto1, dimEntrada);
 		inParcela = new EntradaNumero("Parcela", dimTexto2, dimEntrada);
@@ -142,7 +138,7 @@ public class VentanaMovimientoAM extends Ventana {
 		inFila = new EntradaNumero("Fila", dimTexto2, dimEntrada);
 		inMueble = new EntradaNumero("Mueble", dimTexto2, dimEntrada);
 		inSepultura = new EntradaNumero("Sepultura", dimTexto1, dimEntrada);
-		inInhumacion = new EntradaNumero("Inhumación", dimTexto1, dimEntrada);
+		pozo = new EntradaNumero("Pozo", dimTexto1, dimEntrada);
 		inCementerio = new EntradaTexto("Cementerio", dimTexto1, dimEntrada);
 		inVencimiento = new EntradaFecha(Almanaque.hoy(), "Vencimiento", dimTexto1, dimEntradaVencimiento);
 
@@ -153,27 +149,21 @@ public class VentanaMovimientoAM extends Ventana {
 		panelCheck.add(inCheckMacizo);
 		
 		inSector = new EntradaLista<>("Sector", dimTexto1, dimEntrada);
-		inSubSector = new EntradaLista<>("Sub Sector", dimTexto2, dimEntrada);
 
 		for (Sector sector : Localizador.traerSectores())
 			inSector.getComboBox().addItem(sector);
 		
 		// EL SUB SECTOR DEPENDE DEL SECTOR ESCOGIDO
-		inSector.getComboBox().addActionListener(e -> recargarSubSectores());
+		inSector.getComboBox().addActionListener(e -> seleccionarSector());
 		inSector.getComboBox().setSelectedIndex(0);
 
-		// DEPENDEINDO DEL SUB SECTOR ESCOGIDO ALGUNOS CAMPOS SE INHABILITAN
-		inSubSector.getComboBox().addActionListener(e -> seleccionarSubSector());
-		inSubSector.getComboBox().setSelectedIndex(0);
-		
 		TextoCentrado titulo = new TextoCentrado("Datos de la nueva ubicación");
 		titulo.setBorder(new EmptyBorder(0, 0, 10, 0));
 		
 		// ORGANIZACION DE PANELES
 		PanelVertical panelIzquierdo = new PanelVertical();
 		panelIzquierdo.add(inSector);
-		panelIzquierdo.add(inSubSector);
-		panelIzquierdo.add(inCirc);
+		panelIzquierdo.add(boveda);
 		panelIzquierdo.add(inSeccion);
 		panelIzquierdo.add(inMacizo);
 		panelIzquierdo.add(inParcela);
@@ -185,7 +175,7 @@ public class VentanaMovimientoAM extends Ventana {
 		panelDerecho.add(inFila);
 		panelDerecho.add(inMueble);
 		panelDerecho.add(inSepultura);
-		panelDerecho.add(inInhumacion);
+		panelDerecho.add(pozo);
 		panelDerecho.add(panelCheck);
 		panelDerecho.add(inCementerio);
 		
@@ -200,75 +190,27 @@ public class VentanaMovimientoAM extends Ventana {
 		ret.add(inVencimiento);
 		return ret;
 	}
-	
-	private void seleccionarSubSector() {
-		SubSector subSector = (SubSector) inSubSector.getComboBox().getSelectedItem();
+
+	private void seleccionarSector() {
+		Sector sector = (Sector) inSector.getComboBox().getSelectedItem();
 		habilitarCamposUbicacion(false);
 		
-		if (subSector == SubSector.ADULTOS) {
-			inSeccion.habilitado(true);
-			inMacizo.habilitado(true);
-			inUnidad.habilitado(true);
+		// Seccion esta habilitado para los 3 sectores
+		inSeccion.habilitado(true);
+		
+		if (sector == Sector.SEPULTURAS) {
+			inFila.habilitado(true);
 			inSepultura.habilitado(true);
-			inCheckMacizo.setEnabled(true);
-			inCheckBis.setEnabled(true);
+			pozo.habilitado(true);
+		}
 
-		}else if (subSector == SubSector.ANGELITOS) {
-			inSeccion.habilitado(true);
-			inMacizo.habilitado(true);
-			inUnidad.habilitado(true);
-			inSepultura.habilitado(true);
-			inCheckMacizo.setEnabled(true);
-			inCheckBis.setEnabled(true); 
-			
-		}else if (subSector == SubSector.COMPRADA) {
-			inSeccion.habilitado(true);
-			inMacizo.habilitado(true);
-			inUnidad.habilitado(true);
-			inSepultura.habilitado(true);
-			inCheckMacizo.setEnabled(true);
-			inCheckBis.setEnabled(true);
-			inParcela.habilitado(true);
-			
-		}else if (subSector == SubSector.INDIGENTES) {
-			inSeccion.habilitado(true);
-			inMacizo.habilitado(true);
-			inSepultura.habilitado(true);
-			inInhumacion.habilitado(true);
-
-		} else if (subSector == SubSector.PALMERAS_ATAUD
-				|| subSector == SubSector.PALMERAS_CENIZAS
-				|| subSector == SubSector.PALMERAS_RESTOS) {
-			
+		if (sector == Sector.NICHERA) {
+			inFila.habilitado(true);
 			inNicho.habilitado(true);
-			inFila.habilitado(true);
-			
-		} else if (subSector == SubSector.PALMERAS_SEPULTURAS) {
-			inSepultura.habilitado(true);
-			
-		} else if (subSector == SubSector.NICHERA) {
-			inCirc.habilitado(true);
-			inSeccion.habilitado(true);
-			inMacizo.habilitado(true);
-			inParcela.habilitado(true);
-			inFila.habilitado(true);
-			inUnidad.habilitado(true);
+		}
 
-		} else if (subSector == SubSector.CENIZARIO) {
-			inMueble.habilitado(true);
-			inNicho.habilitado(true);
-			
-		} else if (subSector == SubSector.BOVEDA) {
-			inCirc.habilitado(true);
-			inSeccion.habilitado(true);
-			inFila.habilitado(true);
-			inMacizo.habilitado(true);
-			inParcela.habilitado(true);
-			inUnidad.habilitado(true);
-			inCheckBis.setEnabled(true);
-	
-		} else if (subSector == SubSector.OTRO_CEMENTERIO) {
-			inCementerio.habilitado(true);
+		if (sector == Sector.BOVEDA) {
+			boveda.habilitado(true);
 		}
 		
 	}
@@ -279,21 +221,14 @@ public class VentanaMovimientoAM extends Ventana {
 		inMacizo.habilitado(habilitado);
 		inUnidad.habilitado(habilitado);
 		inSepultura.habilitado(habilitado);
-		inInhumacion.habilitado(habilitado);
+		pozo.habilitado(habilitado);
 		inNicho.habilitado(habilitado);
 		inFila.habilitado(habilitado);
-		inCirc.habilitado(habilitado);
+		boveda.habilitado(habilitado);
 		inParcela.habilitado(habilitado);
 		inMueble.habilitado(habilitado);
 		inCheckMacizo.setEnabled(habilitado);
 		inCheckBis.setEnabled(habilitado);
-	}
-	
-	private void recargarSubSectores() {
-		inSubSector.getComboBox().removeAllItems();
-		Sector sector = (Sector) inSector.getComboBox().getSelectedItem();
-		for (SubSector elemento : Localizador.traerSubSectores(sector))
-			inSubSector.getComboBox().addItem(elemento);
 	}
 	
 	public Boton botonAceptar() {
@@ -324,9 +259,6 @@ public class VentanaMovimientoAM extends Ventana {
 		return inApellidoFal;
 	}
 	
-	/*public EntradaTexto getDNIFal() {
-		return inDNIFal;
-	}*/
 	public EntradaTexto getCODFal() {
 		return inCODFal;
 	}
@@ -360,7 +292,7 @@ public class VentanaMovimientoAM extends Ventana {
 	}
 	
 	public EntradaNumero getInhumacion() {
-		return inInhumacion;
+		return pozo;
 	}
 	
 	public EntradaNumero getNicho() {
@@ -372,7 +304,7 @@ public class VentanaMovimientoAM extends Ventana {
 	}
 	
 	public EntradaNumero getCirc() {
-		return inCirc;
+		return boveda;
 	}
 	
 	public EntradaNumero getParcela() {
@@ -393,10 +325,6 @@ public class VentanaMovimientoAM extends Ventana {
 	
 	public EntradaLista<Sector> getSector() {
 		return inSector;
-	}
-
-	public EntradaLista<SubSector> getSubSector() {
-		return inSubSector;
 	}
 
 	public EntradaFecha getVencimiento() {

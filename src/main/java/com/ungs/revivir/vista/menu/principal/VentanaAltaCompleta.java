@@ -3,6 +3,7 @@ package com.ungs.revivir.vista.menu.principal;
 import java.awt.Dimension;
 
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -381,8 +382,8 @@ public class VentanaAltaCompleta extends Ventana {
 		return inCheckBis;
 	}
 
-	public EntradaLista<Sector> getSector() {
-		return inSector;
+	public JComboBox<Sector> getSector() {
+		return inSector.getComboBox();
 	}
 
 	public EntradaFecha getVencimiento() {

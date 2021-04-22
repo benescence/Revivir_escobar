@@ -2,10 +2,12 @@ package com.ungs.revivir.vista.menu.fallecidos.fallecidoAM;
 
 import java.sql.Date;
 
+import com.ungs.revivir.negocios.Localizador;
 import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.negocios.manager.UbicacionManager;
 import com.ungs.revivir.negocios.verificador.Verificador;
+import com.ungs.revivir.persistencia.definidos.Sector;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.definidos.TipoFallecimiento;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
@@ -75,7 +77,9 @@ public class ControladorFallecidoAM implements ControladorExterno {
 	}
 	
 	private Ubicacion traerUbicacionVerificada() throws Exception {
-		SubSector subsector = SubSector.SECCION_A;
+		Sector sector = (Sector) ventana.getSector().getSelectedItem();
+		SubSector subsector = Localizador.mapearSector(sector);
+		
 		String otroCementerio = ventana.getCementerio().getValor();
 		Integer nicho = (ventana.getNicho().isEnabled() ? ventana.getNicho().getValor() : null);
 		Integer fila = (ventana.getFila().isEnabled() ? ventana.getFila().getValor() : null);

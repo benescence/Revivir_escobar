@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 
 import java.util.List;
 
+import com.ungs.revivir.negocios.Localizador;
 import com.ungs.revivir.negocios.Vinculador;
 import com.ungs.revivir.negocios.manager.CargoManager;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
@@ -32,7 +33,7 @@ public class Formato {
 
 	public static String BooleanoACadena(boolean valor) {
 		if (valor)
-			return "S�";
+			return "Sí";
 		return "No";
 	}
 
@@ -78,20 +79,12 @@ public class Formato {
 	}
 	
 	public static String ubicacion(Ubicacion ubicacion) {
-		String ret = "Sector "+ubicacion.getSubsector();
-		ret += (ubicacion.getBoveda() != null) ? ", circ " + ubicacion.getBoveda() : ""; 
-		ret += (ubicacion.getSeccion() != null) ? ", seccion " + ubicacion.getSeccion() : ""; 
-		ret += (ubicacion.getMacizo() != null) ? ", macizo " + ubicacion.getMacizo() : ""; 
-		ret += (ubicacion.getParcela() != null) ? ", parcela " + ubicacion.getParcela() : ""; 
-		ret += (ubicacion.getUnidad() != null) ? ", unidad " + ubicacion.getUnidad() : ""; 
+		String ret = "Sector "+ Localizador.mapearSector(ubicacion.getSubsector()) +" - Seccion "+ubicacion.getSeccion();
+		ret += (ubicacion.getBoveda() != null) ? ", Bóveda " + ubicacion.getBoveda() : ""; 
 		ret += (ubicacion.getNicho() != null) ? ", nicho " + ubicacion.getNicho() : ""; 
 		ret += (ubicacion.getFila() != null) ? ", fila " + ubicacion.getFila() : ""; 
-		ret += (ubicacion.getMueble() != null) ? ", mueble " + ubicacion.getMueble() : ""; 
 		ret += (ubicacion.getSepultura() != null) ? ", sepultura " + ubicacion.getSepultura() : ""; 
-		ret += (ubicacion.getPozo() != null) ? ", inhumacion " + ubicacion.getPozo() : ""; 
-		ret += (ubicacion.getBis() != null) ? ", bis " + Formato.BooleanoACadena(ubicacion.getBis()) : ""; 
-		ret += (ubicacion.getBis_macizo() != null) ? ", bis macizo " + Formato.BooleanoACadena(ubicacion.getBis_macizo())  : ""; 
-		ret += (ubicacion.getCementerio() != null) ? ", cementerio " + ubicacion.getCementerio(): ""; 
+		ret += (ubicacion.getPozo() != null) ? ", Pozo" + ubicacion.getPozo() : ""; 
 		return ret;
 	}
 	
