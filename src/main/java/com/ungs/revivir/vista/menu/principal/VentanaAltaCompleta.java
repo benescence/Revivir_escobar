@@ -10,7 +10,6 @@ import javax.swing.border.EmptyBorder;
 import com.ungs.revivir.negocios.Almanaque;
 import com.ungs.revivir.negocios.Localizador;
 import com.ungs.revivir.persistencia.definidos.Sector;
-import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.definidos.TipoFallecimiento;
 import com.ungs.revivir.vista.util.Boton;
 import com.ungs.revivir.vista.util.TextoCentrado;
@@ -31,7 +30,7 @@ public class VentanaAltaCompleta extends Ventana {
 	private Boton btnCargarCliente, btnSelCliente, btnLimpiarCliente;
 	
 	// DATOS DEL DIFUNTO
-	private EntradaTexto inNombreFal, inApellidoFal, inDNIFal, inCocheria,inCodFal;
+	private EntradaTexto inNombreFal, inApellidoFal, inCocheria,inCodFal;
 	private EntradaFecha inFFallecimiento, inFIngreso;
 	private EntradaLista<TipoFallecimiento> inTipo;
 
@@ -40,7 +39,6 @@ public class VentanaAltaCompleta extends Ventana {
 	private EntradaTexto inSeccion, inCementerio;
 	private JCheckBox inCheckMacizo, inCheckBis;
 	private EntradaLista<Sector> inSector;
-	private EntradaLista<SubSector> inSubSector;
 	private EntradaFecha inVencimiento;
 	
 	public VentanaAltaCompleta() {
@@ -117,7 +115,6 @@ public class VentanaAltaCompleta extends Ventana {
 		
 		inNombreFal = new EntradaTexto("Nombres", dimTexto, dimEntrada);
 		inApellidoFal = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
-		//inDNIFal = new EntradaTexto("DNI", dimTexto, dimEntrada);
 		inCodFal = new EntradaTexto("Cod Fallecido", dimTexto, dimEntrada);
 		inCocheria = new EntradaTexto("Cochería", dimTexto, dimEntrada);
 		inFFallecimiento = new EntradaFecha(null, "Fecha de fallecimiento", dimTexto, dimEntrada);
@@ -135,7 +132,6 @@ public class VentanaAltaCompleta extends Ventana {
 		ret.add(titulo);
 		ret.add(inNombreFal);
 		ret.add(inApellidoFal);
-		//ret.add(inDNIFal);
 		ret.add(inCodFal);
 		ret.add(inCocheria);
 		ret.add(inTipo);
@@ -170,24 +166,19 @@ public class VentanaAltaCompleta extends Ventana {
 		panelCheck.add(inCheckMacizo);
 		
 		inSector = new EntradaLista<>("Sector", dimTexto1, dimEntrada);
-		inSubSector = new EntradaLista<>("Sub Sector", dimTexto2, dimEntrada);
 
 		for (Sector sector : Localizador.traerSectores())
 			inSector.getComboBox().addItem(sector);
 		
 		// EL SUB SECTOR DEPENDE DEL SECTOR ESCOGIDO
-		inSector.getComboBox().addActionListener(e -> recargarSubSectores());
+		inSector.getComboBox().addActionListener(e -> seleccionarSector());
 		inSector.getComboBox().setSelectedIndex(0);
 
-		// DEPENDEINDO DEL SUB SECTOR ESCOGIDO ALGUNOS CAMPOS SE INHABILITAN
-		inSubSector.getComboBox().addActionListener(e -> seleccionarSubSector());
-		inSubSector.getComboBox().setSelectedIndex(0);
-		
+	
 		// ORGANIZACION DE PANELES
 		PanelVertical panelIzquierdo = new PanelVertical();
 		panelIzquierdo.setBorder(new EmptyBorder(10, 0, 0, 0));
 		panelIzquierdo.add(inSector);
-		panelIzquierdo.add(inSubSector);
 		panelIzquierdo.add(inBoveda);
 		panelIzquierdo.add(inSeccion);
 		panelIzquierdo.add(inMacizo);
@@ -216,10 +207,13 @@ public class VentanaAltaCompleta extends Ventana {
 		return ret;
 	}
 	
-	private void seleccionarSubSector() {
+	private void seleccionarSector() {
 		
 		Sector sector = (Sector) inSector.getComboBox().getSelectedItem();
 		habilitarCamposUbicacion(false);
+		
+		// La seccion esta habilitada para los 3 sectores
+		inSeccion.habilitado(true);
 		
 		if (sector == Sector.SEPULTURAS) {
 			inFila.habilitado(true);
@@ -254,14 +248,7 @@ public class VentanaAltaCompleta extends Ventana {
 		inCheckBis.setEnabled(habilitado);
 	}
 	
-	private void recargarSubSectores() {
-		inSubSector.getComboBox().removeAllItems();
-		Sector sector = (Sector) inSector.getComboBox().getSelectedItem();
-		for (SubSector elemento : Localizador.traerSubSectores(sector))
-			inSubSector.getComboBox().addItem(elemento);
-	}
 
-	
 	
 	
 	//************************************* SOLO GETTERS A PARTIR DE ESTE PUNTO *********************************************
@@ -322,13 +309,10 @@ public class VentanaAltaCompleta extends Ventana {
 		return inApellidoFal;
 	}
 
-	/*public EntradaTexto getDNIFal() {
-		return inDNIFal;
-	}*/
-	
 	public EntradaTexto getCodFal() {
 		return inCodFal;
 	}
+	
 	public EntradaTexto getCocheria() {
 		return inCocheria;
 	}
@@ -401,13 +385,8 @@ public class VentanaAltaCompleta extends Ventana {
 		return inSector;
 	}
 
-	public EntradaLista<SubSector> getSubSector() {
-		return inSubSector;
-	}
-	
 	public EntradaFecha getVencimiento() {
 		return inVencimiento;
 	}
-
 	
 }

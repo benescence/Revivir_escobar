@@ -42,7 +42,7 @@ public class ControladorAltaCompleta implements ClienteSeleccionable, Controlado
 	}
 
 	private void cancelar() {
-		if (Popup.confirmar("¿Seguro de que desea cancelar la operacion?")) {
+		if (Popup.confirmar("Â¿Seguro de que desea cancelar la operacion?")) {
 			ventana.dispose();
 			invocador.mostrar();			
 		}
@@ -70,7 +70,6 @@ public class ControladorAltaCompleta implements ClienteSeleccionable, Controlado
 		
 		ventana.getNombreFal().setValor("");
 		ventana.getApellidoFal().setValor("");
-		//ventana.getDNIFal().setValor("");
 		ventana.getCocheria().setValor("");
 
 		ventana.getCirc().setValor("");
@@ -126,7 +125,6 @@ public class ControladorAltaCompleta implements ClienteSeleccionable, Controlado
 		}
 		
 		seleccionarCliente(directo);
-		//ventana.getDNIFal().getTextField().requestFocusInWindow();
 	}
 
 	private void aceptar() {
@@ -186,7 +184,6 @@ public class ControladorAltaCompleta implements ClienteSeleccionable, Controlado
 	private Fallecido obtenerFallecidoVerificado() throws Exception {
 		String nombre = ventana.getNombreFal().getValor();
 		String apellido = ventana.getApellidoFal().getValor();
-		//String DNI = ventana.getDNIFal().getValor();
 		String DNI = "default";
 		String cocheria = ventana.getCocheria().getValor();
 		TipoFallecimiento tipo = (TipoFallecimiento) ventana.getTipo().getComboBox().getSelectedItem();
@@ -199,11 +196,10 @@ public class ControladorAltaCompleta implements ClienteSeleccionable, Controlado
 	}
 	
 	private Ubicacion obtenerUbicacionVerificada() throws Exception {
-		SubSector subsector = (SubSector) ventana.getSubSector().getComboBox().getSelectedItem();
+		SubSector subsector = SubSector.SECCION_A;
 		String otroCementerio = ventana.getCementerio().getValor();
 		Integer nicho = (ventana.getNicho().isEnabled() ? ventana.getNicho().getValor() : null);
 		Integer fila = (ventana.getFila().isEnabled() ? ventana.getFila().getValor() : null);
-		String seccion = (ventana.getSeccion().isEnabled() ? ventana.getSeccion().getTextField().getText() : null);
 		Integer macizo = (ventana.getMacizo().isEnabled() ? ventana.getMacizo().getValor():null);
 		Integer unidad = (ventana.getUnidad().isEnabled() ? ventana.getUnidad().getValor() : null);
 		Date vencimiento = ventana.getVencimiento().getValor();
@@ -221,6 +217,14 @@ public class ControladorAltaCompleta implements ClienteSeleccionable, Controlado
 		Integer inhumacion = (ventana.getInhumacion().isEnabled() ? ventana.getInhumacion().getValor() : null);
 		Integer circ = (ventana.getCirc().isEnabled() ? ventana.getCirc().getValor(): null);
 
+		// La seccion es siempre mayuscula y solo puede ser una letra
+		String seccion = (ventana.getSeccion().isEnabled() ? ventana.getSeccion().getTextField().getText() : null);
+		if (seccion != null && seccion.length() == 1)
+			seccion = seccion.toUpperCase().charAt(0) + "";
+		else 
+			throw new Exception("La seccion debe ser una letra: ["+seccion+"]");
+
+		
 		Ubicacion ubicacion = new Ubicacion(-1, subsector, otroCementerio, nicho, fila, seccion,
 				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ, vencimiento);
 		

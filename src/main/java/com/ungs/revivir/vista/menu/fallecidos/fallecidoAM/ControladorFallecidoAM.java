@@ -75,11 +75,10 @@ public class ControladorFallecidoAM implements ControladorExterno {
 	}
 	
 	private Ubicacion traerUbicacionVerificada() throws Exception {
-		SubSector subsector = (SubSector) ventana.getSubSector().getSelectedItem();
+		SubSector subsector = SubSector.SECCION_A;
 		String otroCementerio = ventana.getCementerio().getValor();
 		Integer nicho = (ventana.getNicho().isEnabled() ? ventana.getNicho().getValor() : null);
 		Integer fila = (ventana.getFila().isEnabled() ? ventana.getFila().getValor() : null);
-		String seccion = (ventana.getSeccion().isEnabled() ? ventana.getSeccion().getTextField().getText() : null);
 		Integer macizo = (ventana.getMacizo().isEnabled() ? ventana.getMacizo().getValor():null);
 		Integer unidad = (ventana.getUnidad().isEnabled() ? ventana.getUnidad().getValor() : null);
 		
@@ -97,6 +96,13 @@ public class ControladorFallecidoAM implements ControladorExterno {
 		Integer boveda = (ventana.getInBoveda().isEnabled() ? ventana.getInBoveda().getValor() : null);
 		Integer pozo = (ventana.getPozo().isEnabled() ? ventana.getPozo().getValor(): null);
 		Date vencimiento = ventana.getVencimiento().getValor();
+		
+		// La seccion es siempre mayuscula y solo puede ser una letra
+		String seccion = (ventana.getSeccion().isEnabled() ? ventana.getSeccion().getTextField().getText() : null);
+		if (seccion != null && seccion.length() == 1)
+			seccion = seccion.toUpperCase().charAt(0) + "";
+		else 
+			throw new Exception("La seccion debe ser una letra: ["+seccion+"]");
 		
 		Ubicacion ubicacion = new Ubicacion(-1, subsector, otroCementerio, nicho, fila, seccion,
 				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, pozo, boveda, vencimiento);

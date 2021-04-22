@@ -11,7 +11,6 @@ import javax.swing.border.EmptyBorder;
 import com.ungs.revivir.negocios.Almanaque;
 import com.ungs.revivir.negocios.Localizador;
 import com.ungs.revivir.persistencia.definidos.Sector;
-import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.definidos.TipoFallecimiento;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.vista.util.Boton;
@@ -29,7 +28,6 @@ public class VentanaFallecidoAM extends Ventana {
 	private Boton btnAceptar, btnCancelar;
 	
 	// DATOS DEL DIFUNTO
-	//private EntradaTexto inNombre, inApellido, inDNI, inCocheria;
 	private EntradaTexto inNombre, inApellido, inCod, inCocheria;
 	private EntradaFecha inFechaFallecimiento, inFechaIngreso;
 	private EntradaLista<TipoFallecimiento> inTipo;
@@ -40,7 +38,6 @@ public class VentanaFallecidoAM extends Ventana {
 	private EntradaFecha inVencimiento;
 	private JCheckBox inCheckMacizo, inCheckBis;
 	private EntradaLista<Sector> inSector;
-	private EntradaLista<SubSector> inSubSector;
 	
 	public VentanaFallecidoAM() {
 		super("Alta de fallecido", 450, 300);
@@ -52,8 +49,6 @@ public class VentanaFallecidoAM extends Ventana {
 		inicializar(fallecido);
 		inNombre.getTextField().setText(fallecido.getNombre());
 		inApellido.getTextField().setText(fallecido.getApellido());
-		//inDNI.getTextField().setText(fallecido.getDNI());
-		//sinCod.getTextField().setText(Integer.toString(fallecido.getCod_fallecido()));
 		inCocheria.getTextField().setText(fallecido.getCocheria());
 		inTipo.getComboBox().setSelectedItem(fallecido.getTipoFallecimiento());
 	}
@@ -88,7 +83,6 @@ public class VentanaFallecidoAM extends Ventana {
 		
 		inNombre = new EntradaTexto("Nombres", dimTexto, dimEntrada);
 		inApellido = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
-		//inDNI = new EntradaTexto("DNI", dimTexto, dimEntrada);
 		inCod = new EntradaTexto("Cod Fallecido", dimTexto, dimEntrada);
 		inCocheria = new EntradaTexto("Cochería", dimTexto, dimEntrada);
 		inFechaFallecimiento = new EntradaFecha(null, "Fecha de fallecimiento", dimTexto, dimEntrada);
@@ -104,7 +98,6 @@ public class VentanaFallecidoAM extends Ventana {
 		panelFallecido.add(new TextoCentrado("Datos del fallecido"));
 		panelFallecido.add(inNombre);
 		panelFallecido.add(inApellido);
-		//panelFallecido.add(inDNI);
 		panelFallecido.add(inCod);
 		panelFallecido.add(inCocheria);
 		panelFallecido.add(inTipo);
@@ -139,24 +132,19 @@ public class VentanaFallecidoAM extends Ventana {
 		panelCheck.add(inCheckMacizo);
 		
 		inSector = new EntradaLista<>("Sector", dimTexto1, dimEntrada);
-		inSubSector = new EntradaLista<>("Sub Sector", dimTexto2, dimEntrada);
 
 		for (Sector sector : Localizador.traerSectores())
 			inSector.getComboBox().addItem(sector);
 		
 		// EL SUB SECTOR DEPENDE DEL SECTOR ESCOGIDO
-		inSector.getComboBox().addActionListener(e -> recargarSubSectores());
+		inSector.getComboBox().addActionListener(e -> seleccionarSector());
 		inSector.getComboBox().setSelectedIndex(0);
 
-		// DEPENDEINDO DEL SUB SECTOR ESCOGIDO ALGUNOS CAMPOS SE INHABILITAN
-		inSubSector.getComboBox().addActionListener(e -> seleccionarSubSector());
-		inSubSector.getComboBox().setSelectedIndex(0);
-		
+	
 		// ORGANIZACION DE PANELES
 		PanelVertical panelIzquierdo = new PanelVertical();
 		panelIzquierdo.setBorder(new EmptyBorder(10, 0, 0, 0));
 		panelIzquierdo.add(inSector);
-		panelIzquierdo.add(inSubSector);
 		panelIzquierdo.add(inPozo);
 		panelIzquierdo.add(inSeccion);
 		panelIzquierdo.add(inMacizo);
@@ -185,9 +173,12 @@ public class VentanaFallecidoAM extends Ventana {
 		return ret;
 	}
 	
-	private void seleccionarSubSector() {
+	private void seleccionarSector() {
 		Sector sector = (Sector) inSector.getComboBox().getSelectedItem();
 		habilitarCamposUbicacion(false);
+		
+		// Seccion esta habilitado para los 3 sectores
+		inSeccion.habilitado(true);
 		
 		if (sector == Sector.SEPULTURAS) {
 			inFila.habilitado(true);
@@ -224,13 +215,6 @@ public class VentanaFallecidoAM extends Ventana {
 		inBoveda.habilitado(habilitado);
 	}
 	
-	private void recargarSubSectores() {
-		inSubSector.getComboBox().removeAllItems();
-		Sector sector = (Sector) inSector.getComboBox().getSelectedItem();
-		for (SubSector elemento : Localizador.traerSubSectores(sector))
-			inSubSector.getComboBox().addItem(elemento);
-	}
-
 	public JTextField getCod_Fallecido() {
 		return inCod.getTextField();
 	}
@@ -313,10 +297,6 @@ public class VentanaFallecidoAM extends Ventana {
 
 	public JComboBox<Sector> getSector() {
 		return inSector.getComboBox();
-	}
-
-	public JComboBox<SubSector> getSubSector() {
-		return inSubSector.getComboBox();
 	}
 
 	public Boton botonAceptar() {
