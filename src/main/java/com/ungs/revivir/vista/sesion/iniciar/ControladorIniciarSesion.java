@@ -27,6 +27,7 @@ public class ControladorIniciarSesion {
 			String password = ventana.getPassword().getTextField().getText();
 			
 			try {
+				Sesion.ejecutarQuery();
 				Sesion.iniciarSesion(nombre, password);
 				ventana.dispose();
 				ventana = null;
