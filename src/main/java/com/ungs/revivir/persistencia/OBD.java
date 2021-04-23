@@ -37,6 +37,7 @@ public class OBD {
 			e.printStackTrace();
 		}
 	}
+	
 	public Connection getConexion() {
 		if (conexion == null) {
 			try {
@@ -56,8 +57,10 @@ public class OBD {
 			conexion.close();
 			conexion = null;
 		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
 	}
+	
 	public Integer selectLastID(String tabla) {
 		String sql = "select ID from "+tabla+" order by ID desc limit 1";
 		Integer ret = null;
@@ -81,6 +84,16 @@ public class OBD {
 			
 		return ret;
 	}
+	
+	public void ejecutarTimeZone() {
+		try {
+			
+			ejecutarSQL("SET @@global.time_zone = '+00:00' ;");
+			ejecutarSQL("SET @@session.time_zone = '+00:00';");
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}	
+	}
 
 }
-	
