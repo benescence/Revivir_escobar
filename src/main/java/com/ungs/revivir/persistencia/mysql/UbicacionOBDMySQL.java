@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,8 +83,6 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 		ejecutarSQL(consulta);	
 	}
 
-	
-	
 	@Override
 	public Ubicacion selectByID(Integer ID) {
 		String condicion = "ID = "+ID;
@@ -250,7 +250,7 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 						mueble,
 						inhumacion,
 						circ,
-						resultados.getDate("vencimiento")
+						Date.valueOf(resultados.getObject("vencimiento", LocalDate.class))
 					));
 			}
 
