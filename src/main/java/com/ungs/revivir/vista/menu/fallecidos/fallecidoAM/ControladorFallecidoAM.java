@@ -100,13 +100,7 @@ public class ControladorFallecidoAM implements ControladorExterno {
 		Integer boveda = (ventana.getInBoveda().isEnabled() ? ventana.getInBoveda().getValor() : null);
 		Integer pozo = (ventana.getPozo().isEnabled() ? ventana.getPozo().getValor(): null);
 		Date vencimiento = ventana.getVencimiento().getValor();
-		
-		// La seccion es siempre mayuscula y solo puede ser una letra
 		String seccion = (ventana.getSeccion().isEnabled() ? ventana.getSeccion().getTextField().getText() : null);
-		if (seccion != null && seccion.length() == 1)
-			seccion = seccion.toUpperCase().charAt(0) + "";
-		else 
-			throw new Exception("La seccion debe ser una letra: ["+seccion+"]");
 		
 		Ubicacion ubicacion = new Ubicacion(-1, subsector, otroCementerio, nicho, fila, seccion,
 				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, pozo, boveda, vencimiento);
@@ -117,7 +111,6 @@ public class ControladorFallecidoAM implements ControladorExterno {
 	private Fallecido traerFallecidoVerificado() throws Exception {
 		String nombre = ventana.getNombreFallecido().getText();;
 		String apellido = ventana.getApellidoFallecido().getText();
-		//String DNI = ventana.getDNIFallecido().getText();
 		String DNI = "";
 		String cocheria = ventana.getCocheria().getText();
 		TipoFallecimiento tipo = (TipoFallecimiento) ventana.getInTipoFallecimiento().getSelectedItem();
