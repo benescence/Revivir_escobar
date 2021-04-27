@@ -25,16 +25,16 @@
 	<title>
 		<band height="140" splitType="Stretch">
 			<frame>
-				<reportElement x="140" y="0" width="540" height="90" uuid="fbf866cd-64dc-4043-b98c-ed8d9f31d19c"/>
+				<reportElement x="60" y="0" width="660" height="90" uuid="fbf866cd-64dc-4043-b98c-ed8d9f31d19c"/>
 				<staticText>
-					<reportElement x="180" y="59" width="220" height="31" uuid="df09700e-f0a8-43aa-a9d6-1430d1a7476d"/>
-					<textElement>
+					<reportElement x="230" y="60" width="220" height="31" uuid="df09700e-f0a8-43aa-a9d6-1430d1a7476d"/>
+					<textElement textAlignment="Center">
 						<font size="18"/>
 					</textElement>
 					<text><![CDATA[Catastro ]]></text>
 				</staticText>
 				<image hAlign="Center">
-					<reportElement x="240" y="10" width="110" height="50" uuid="749ca9cc-7b40-4aa1-8710-adeeae3d14a1"/>
+					<reportElement x="280" y="0" width="110" height="50" uuid="749ca9cc-7b40-4aa1-8710-adeeae3d14a1"/>
 					<imageExpression><![CDATA["imagenes/Logo.png"]]></imageExpression>
 				</image>
 				<staticText>
@@ -45,7 +45,7 @@
 					<text><![CDATA[Cematorio Escobar]]></text>
 				</staticText>
 				<textField>
-					<reportElement mode="Transparent" x="290" y="60" width="160" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="c731b59a-9b1c-4e52-8a5d-059e0a6f6282"/>
+					<reportElement mode="Transparent" x="450" y="0" width="160" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="c731b59a-9b1c-4e52-8a5d-059e0a6f6282"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
@@ -56,7 +56,7 @@
 					<text><![CDATA[Revivir Constructora S.R.L. ]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="-60" y="70" width="230" height="30" uuid="48dc2fc6-8e8c-4c90-8c45-be67836cccfb"/>
+					<reportElement x="5" y="60" width="230" height="30" uuid="48dc2fc6-8e8c-4c90-8c45-be67836cccfb"/>
 					<text><![CDATA[Mateo Gelves 2350 - Belén de Escobar , CP: 1625                                                        Tel : 11-4187-2144 / 0348-4514124]]></text>
 				</staticText>
 			</frame>
