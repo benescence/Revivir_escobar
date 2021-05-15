@@ -28,6 +28,8 @@ public interface UbicacionOBD {
 	public Ubicacion selectByFallecido(Fallecido fallecido);
 	
 	public List<Ubicacion> selectBySubsectorEntreFechas(SubSector subSector, Date desde, Date hasta);
+
+	public List<Ubicacion> selectBySubsectorEntreFechasSinLimite(SubSector subSector, Date desde, Date hasta);
 	
 	public Ubicacion selectByUbicacion(Ubicacion ubicacion);
 	

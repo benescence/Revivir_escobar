@@ -9,10 +9,15 @@ import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
 
 public class VencimientoManager {
-	
+
 	public static List<Ubicacion> buscarVencimientos(SubSector subSector, Date desde, Date hasta) {
 		UbicacionOBD obd = FactoryOBD.crearUbicacionOBD();
 		return obd.selectBySubsectorEntreFechas(subSector, desde, hasta);
+	}
+
+	public static List<Ubicacion> buscarVencimientosSinLimite(SubSector subSector, Date desde, Date hasta) {
+		UbicacionOBD obd = FactoryOBD.crearUbicacionOBD();
+		return obd.selectBySubsectorEntreFechasSinLimite(subSector, desde, hasta);
 	}
 
 }

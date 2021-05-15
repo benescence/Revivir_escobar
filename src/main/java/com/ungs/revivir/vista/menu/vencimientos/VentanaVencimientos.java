@@ -1,14 +1,15 @@
 package com.ungs.revivir.vista.menu.vencimientos;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import com.ungs.revivir.negocios.Almanaque;
 import com.ungs.revivir.negocios.Localizador;
-import com.ungs.revivir.negocios.manager.UbicacionManager;
 import com.ungs.revivir.persistencia.definidos.Sector;
+import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.tablas.TablaVencimientos;
 import com.ungs.revivir.vista.util.Boton;
 import com.ungs.revivir.vista.util.contenedores.PanelHorizontal;
@@ -26,8 +27,7 @@ public class VentanaVencimientos extends VentanaInterna {
 	
 	public VentanaVencimientos() {
 		super("Gestion de vencimientos", 500, 500);
-		
-		tabla = new TablaVencimientos(UbicacionManager.traerTodo());
+		tabla = new TablaVencimientos(new ArrayList<Ubicacion>());
 		JScrollPane panelTabla = new JScrollPane(tabla);
 		
 		Dimension dimBoton = new Dimension(150, 25);
