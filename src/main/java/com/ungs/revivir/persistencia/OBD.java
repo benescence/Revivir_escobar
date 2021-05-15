@@ -11,16 +11,30 @@ public class OBD {
 	protected final Integer limite = 100;
 	protected static Connection conexion = null;
 	
+<<<<<<< HEAD
 	// DESARROLLO
 	//protected final String cadenaConexion = "jdbc:mysql://localhost:3306/revivir_escobar?serverTimezone=UTC"; 
 	//protected String usuarioBD = "root"; 
 	//protected String passwordBD = "root";
 	//protected String passwordBD = "pass";
 	
+=======
+	// DESARROLLO - LOCAL
+	// protected final String cadenaConexion = "jdbc:mysql://localhost:3306/revivir_escobar?serverTimezone=UTC"; 
+	// protected String usuarioBD = "root"; 
+	// protected String passwordBD = "root";
+	 
+>>>>>>> branch 'main' of https://github.com/benescence/Revivir_escobar.git
 	// PRODUCCION
+<<<<<<< HEAD
 	protected final String cadenaConexion = "jdbc:mysql://crematorioescobar.com:2222/cretorioescobar_CVZOMBI"; 
 	protected String usuarioBD = "cretorioescobar_CVZOMBI";
 	protected String passwordBD = "Cvzombi1";
+=======
+	protected final String cadenaConexion = "jdbc:mysql://crematorioescobar.com:3306/cretorioescobar_Revivir2"; 
+	protected String usuarioBD = "cretorioescobar_Revivir2";
+	protected String passwordBD = "REVIVIR1a";
+>>>>>>> branch 'main' of https://github.com/benescence/Revivir_escobar.git
 			
 	// Ejecutar sentencias que no traigan resultados
 	public void ejecutarSQL(String sql) {
