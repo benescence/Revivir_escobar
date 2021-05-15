@@ -1,6 +1,5 @@
 package com.ungs.revivir.negocios.verificador;
 
-import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 
 public class VerificadorUbicacion {

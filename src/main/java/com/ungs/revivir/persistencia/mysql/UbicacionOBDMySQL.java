@@ -75,10 +75,7 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 	@Override
 	public void delete(Ubicacion ubicacion) {
 		String condicion = "ID = "+ubicacion.getID();
-		String consulta1 = "SET FOREIGN_KEY_CHECKS=0;";
 		String consulta = " delete from "+tabla+" where ("+condicion+");";
-		String consulta3 = "SET FOREIGN_KEY_CHECKS=1;";
-
 		ejecutarSQL(consulta);	
 	}
 
@@ -159,10 +156,7 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 							+ condicioninhumacion
 							+ condicionSepultura ;
 		
-	
-			System.out.println(condicion);
-			return selectByCondicion(condicion, limite);
-		
+		return selectByCondicion(condicion, limite);		
 	}
 	
 	@Override

@@ -11,16 +11,15 @@ public class OBD {
 	protected final Integer limite = 100;
 	protected static Connection conexion = null;
 	
-	// DESARROLLO
-	protected final String cadenaConexion = "jdbc:mysql://localhost:3306/revivir_escobar?serverTimezone=UTC"; 
-	protected String usuarioBD = "root"; 
-	protected String passwordBD = "root";
-	//protected String passwordBD = "pass";
-	
+	// DESARROLLO - LOCAL
+	// protected final String cadenaConexion = "jdbc:mysql://localhost:3306/revivir_escobar?serverTimezone=UTC"; 
+	// protected String usuarioBD = "root"; 
+	// protected String passwordBD = "root";
+	 
 	// PRODUCCION
-	//protected final String cadenaConexion = "jdbc:mysql://sql143.main-hosting.eu:3306/u147800277_cemen"; 
-	//protected String usuarioBD = "u147800277_ben";
-	//protected String passwordBD = "Tiburones";
+	protected final String cadenaConexion = "jdbc:mysql://crematorioescobar.com:3306/cretorioescobar_Revivir2"; 
+	protected String usuarioBD = "cretorioescobar_Revivir2";
+	protected String passwordBD = "REVIVIR1a";
 			
 	// Ejecutar sentencias que no traigan resultados
 	public void ejecutarSQL(String sql) {
