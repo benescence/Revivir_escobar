@@ -5,6 +5,13 @@ import com.ungs.revivir.persistencia.entidades.Ubicacion;
 public class VerificadorUbicacion {
 	
 	public static Ubicacion verificar(Ubicacion verificar) throws Exception {
+		String mensaje = "";
+		
+		if (verificar.getVencimiento() == null)
+			mensaje += "\n    -El VENCIMIENTO no puede estar vacio.";
+		
+		if (!mensaje.equals(""))
+			throw new Exception("Se encontraron los siguientes errores en el formulario: "+mensaje);
 		
 		return verificar;
 /*

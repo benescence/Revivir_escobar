@@ -71,7 +71,7 @@ public class ControladorFallecidoAM implements ControladorExterno {
 		
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 	}
