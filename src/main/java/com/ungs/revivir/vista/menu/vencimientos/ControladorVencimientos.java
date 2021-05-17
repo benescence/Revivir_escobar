@@ -75,7 +75,7 @@ public class ControladorVencimientos implements ControladorInterno, Visualizable
 		SubSector subSector = Localizador.mapearSector(sector);
 		Date desde = ventana.getDesde().getValor();
 		Date hasta = ventana.getHasta().getValor();
-		List<Ubicacion> vencimientos = VencimientoManager.buscarVencimientos(subSector, desde, hasta);
+		List<Ubicacion> vencimientos = VencimientoManager.buscarVencimientosSinLimite(subSector, desde, hasta);
 		new reporteVencimientos(vencimientos);
 	}
 
@@ -84,7 +84,7 @@ public class ControladorVencimientos implements ControladorInterno, Visualizable
 		SubSector subSector = Localizador.mapearSector(sector);
 		Date desde = ventana.getDesde().getValor();
 		Date hasta = ventana.getHasta().getValor();
-		List<Ubicacion> vencimientos = VencimientoManager.buscarVencimientos(subSector, desde, hasta);
+		List<Ubicacion> vencimientos = VencimientoManager.buscarVencimientosSinLimite(subSector, desde, hasta);
 		new ReporteNotificaciones(vencimientos);
 	}
 	
