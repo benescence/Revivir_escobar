@@ -16,7 +16,9 @@ import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.FallecidoOBD;
 import com.ungs.revivir.persistencia.interfaces.PagoOBD;
+import com.ungs.revivir.persistencia.interfaces.UbicacionLibreOBD;
 import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
+import com.ungs.revivir.persistencia.interfaces.UbicacionesTotalesOBD;
 
 public class Busqueda {
 	
@@ -40,16 +42,45 @@ public class Busqueda {
 			Integer muebleMin, Integer muebleMax,
 			Integer sepulturaMin, Integer sepulturaMax,
 			Integer inhumacionMin, Integer inhumacionMax,
-			SubSector subSector, String seccion) {
+			SubSector subSector,
+			String seccion,
+			boolean mostrar,
+			boolean macizo_bis,
+			boolean bis) {
 		
-		
-		// validaciones
-		seccion = Verificador.anular(seccion);
-		UbicacionOBD obd = FactoryOBD.crearUbicacionOBD();
-		return obd.selectByrangos(nichoMax, nichoMin, circMax, circMin, filaMax, filaMin, parcelaMax,
-				parcelaMin, unidadMax, unidadMin, muebleMax, muebleMin, sepulturaMax, sepulturaMin,
-				inhumacionMax, inhumacionMin, macizoMax, macizoMin, seccion, subSector);
+		// Si esta activado el FLAG mostrar trae todas las ubicaciones posibles (no importa si esta ocupado o no)
+		UbicacionesTotalesOBD obd1 = FactoryOBD.crearUbicacionesTotalesOBD();
+		if(mostrar)
+			return obd1.selectByrangos(
+					nichoMax, nichoMin,
+					circMax, circMin,
+					filaMax, filaMin,
+					parcelaMax, parcelaMin,
+					unidadMax, unidadMin,
+					muebleMax, muebleMin,
+					sepulturaMax, sepulturaMin,
+					inhumacionMax, inhumacionMin,
+					macizoMax, macizoMin,
+					seccion,
+					subSector,macizo_bis, bis);
+
+		// De lo contrario trae solo las ubicaciones que no estan ocupado
+		UbicacionLibreOBD obd = FactoryOBD.crearUbicacionLibreOBD();
+		return obd.selectByrangos(
+				nichoMax, nichoMin,
+				circMax, circMin,
+				filaMax, filaMin,
+				parcelaMax, parcelaMin,
+				unidadMax, unidadMin,
+				muebleMax, muebleMin,
+				sepulturaMax, sepulturaMin,
+				inhumacionMax, inhumacionMin,
+				macizoMax, macizoMin,
+				seccion,
+				subSector,
+				macizo_bis,bis);
 	}
+
 
 	//public static List<Pago> pagos(Cliente cliente, Fallecido fallecido, Date fecha) throws Exception {
 	public static List<Pago> pagos( Fallecido fallecido, Date fecha) throws Exception {
