@@ -241,3 +241,52 @@ INSERT INTO rev_fallecidos (tipo_fallecimiento,cod_fallecido, ubicacion, nombre,
 
 insert into rev_usuarios (rol, usuario, password) values 
 (1, 'admin', 'admin');
+
+
+CREATE VIEW rev_v_ubicaciones_libres AS
+	SELECT 
+		UT.ID,
+		UT.subsector,
+		UT.circ,
+		UT.seccion,
+		UT.macizo,
+		UT.parcela,
+		UT.fila,
+		UT.unidad,
+		UT.nicho,
+		UT.mueble,
+		UT.sepultura,
+		UT.inhumacion,
+		UT.bis_macizo,
+		UT.bis
+	FROM rev_ubicaciones_totales UT
+		LEFT JOIN rev_ubicaciones U ON IFNULL(UT.fila, -1) = IFNULL(U.fila, -1)
+			AND IFNULL(UT.subsector, -1) = IFNULL(U.subsector, -1)
+			AND IFNULL(UT.seccion, -1) = IFNULL(U.seccion, -1)
+			AND IFNULL(UT.macizo, -1) = IFNULL(U.macizo, -1)
+			AND IFNULL(UT.parcela, -1) = IFNULL(U.parcela, -1)
+			AND IFNULL(UT.unidad, -1) = IFNULL(U.unidad, -1)
+			AND IFNULL(UT.nicho, -1) = IFNULL(U.nicho, -1)
+			AND IFNULL(UT.mueble, -1) = IFNULL(U.mueble, -1)
+			AND IFNULL(UT.sepultura, -1) = IFNULL(U.sepultura, -1)
+			AND IFNULL(UT.bis_macizo, -1) = IFNULL(U.bis_macizo, -1)
+			AND IFNULL(UT.bis, -1) = IFNULL(U.bis, -1)
+	WHERE U.ID IS null
+;
+
+CREATE TABLE rev_ubicaciones_totales (
+	ID INT(10) AUTO_INCREMENT,
+	subsector INT(10) NOT NULL,
+	seccion VARCHAR(10) NULL,
+	macizo INT(10) NULL,
+	parcela INT(10) NULL,
+	fila INT(10) NULL,
+	unidad INT(10) NULL,
+	nicho INT(10) NULL,
+	mueble INT(10) NULL,
+	sepultura INT(10) NULL,
+	bis_macizo BOOLEAN NULL,
+	bis BOOLEAN NULL,
+	PRIMARY KEY (ID),
+	FOREIGN KEY (subsector) REFERENCES rev_subsector(ID)
+);rev_ubicaciones_totales
