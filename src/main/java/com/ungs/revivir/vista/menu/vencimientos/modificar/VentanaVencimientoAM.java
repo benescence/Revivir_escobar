@@ -18,7 +18,7 @@ public class VentanaVencimientoAM extends Ventana {
 	private static final long serialVersionUID = 1L;
 	private EntradaTexto inUbicacion;
 	private EntradaFecha inVencimientoAnterior, inNuevoVencimiento;
-	private Boton btnAceptar, btnCancelar,btnImpLista;
+	private Boton btnAceptar, btnCancelar;
 	
 	public VentanaVencimientoAM(Ubicacion ubicacion) {
 		super("Modificar vencimientos");
@@ -38,12 +38,10 @@ public class VentanaVencimientoAM extends Ventana {
 		btnAceptar = new Boton("Aceptar", dimBoton);
 		btnCancelar = new Boton("Cancelar", dimBoton);
 		
-		
 		PanelHorizontal panelBotones = new PanelHorizontal();
 		panelBotones.setBorder(new EmptyBorder(10, 0, 0, 0));
 		panelBotones.add(btnAceptar);
 		panelBotones.add(btnCancelar);
-		
 		
 		PanelVertical panelPrincipal = new PanelVertical();
 		panelPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -55,12 +53,10 @@ public class VentanaVencimientoAM extends Ventana {
 		panelPrincipal.add(panelBotones);
 		compactar();
 	}
-
 	
 	public EntradaFecha getNuevoVencimiento() {
 		return inNuevoVencimiento;
 	}
-
 	
 	public Boton botonAceptar() {
 		return btnAceptar;

@@ -13,7 +13,7 @@ import com.ungs.revivir.persistencia.entidades.Cargo;
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.interfaces.PagoOBD;
 
-public class PagoOBDMYSQL extends OBD implements PagoOBD{
+public class PagoOBDMySQL extends OBD implements PagoOBD{
 	private final String campos = "cargo, importe, observaciones, fecha";
 	private final String tabla = "rev_pagos";
 	

@@ -13,9 +13,10 @@ import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.UbicacionesTotalesOBD;
 
-public class UbicacioneTotalOBDMySQL extends OBD implements UbicacionesTotalesOBD {
+public class UbicacionTotalOBDMySQL extends OBD implements UbicacionesTotalesOBD {
+	
 	private final String campos = "subsector, nicho, fila,"
-			+ "seccion, macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ";
+			+ " seccion, macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ";
 	private final String tabla = "rev_ubicaciones_totales";
 	
 
@@ -32,30 +33,30 @@ public class UbicacioneTotalOBDMySQL extends OBD implements UbicacionesTotalesOB
 									Integer macizoMax, Integer macizoMin,
 									String seccion,
 									SubSector subsector,
-									Boolean macizo_BIS,
+									Boolean macizo_bis,
 									Boolean bis) {
 			
 		String condicionSubsector =" subsector = " + Definido.subsector(subsector);
 		String condicionSeccion = (seccion != null) ? (" and "+  "seccion = '" + seccion + "'") : "";
-		String condicionNichoMin = (nichoMin!= null ) ? (" and nicho >= "+nichoMin ): "";
+		String condicionNichoMin = (nichoMin != null ) ? (" and nicho >= "+nichoMin ): "";
 		String condicionNichoMax = ( nichoMax != null) ? (" and nicho <= " + nichoMax) : "";
 		String condicionFilaMax = (filaMax != null) ? ("  and fila <= " + filaMax) : "";
-		String condicionFilaMin = (filaMin!= null ) ? (" and fila >= "+filaMin) : "";
+		String condicionFilaMin = (filaMin != null ) ? (" and fila >= "+filaMin) : "";
 		String condicionCircMax = (circMax != null) ? (" and circ <= " + circMax) : "";
-		String condicionCircMin = (circMin!= null) ? (" and circ >= "+circMin ) : "";
-		String condicionUnidadMin = (unidadMin!= null ) ? (" and unidad >= "+unidadMin ) : "";
+		String condicionCircMin = (circMin != null) ? (" and circ >= "+circMin ) : "";
+		String condicionUnidadMin = (unidadMin != null ) ? (" and unidad >= "+unidadMin ) : "";
 		String condicionUnidadMax= ( unidadMax != null) ? ("  and unidad <= " + unidadMax) : "";		
-		String condicionParcelaMax = ( parcelaMax != null) ? ("  and  parcela <= " + parcelaMax) : "";
-		String condicionParcelaMin = (parcelaMin!= null ) ? (" and parcela >= "+parcelaMin ) : "";
+		String condicionParcelaMax = ( parcelaMax != null) ? (" and parcela <= " + parcelaMax) : "";
+		String condicionParcelaMin = (parcelaMin != null ) ? (" and parcela >= "+parcelaMin ) : "";
 		String condicionMuebleMax = (  muebleMax != null) ? ("  and mueble <= " + muebleMax) : "";
-		String condicionMuebleMin = (muebleMin!= null ) ? (" and mueble >= "+muebleMin) : "";
+		String condicionMuebleMin = (muebleMin != null ) ? (" and mueble >= "+muebleMin) : "";
 		String condicionMacizoMax = ( macizoMax != null) ? ("  and macizo <= " + macizoMax) : "";
-		String condicionMacizoMin = (macizoMin!= null ) ? (" and macizo >= "+macizoMin ) : "";	
-		String condicioninhumacionMax = (inhumacionMax != null) ? ("  and inhumacion <= " + inhumacionMax) : "";
-		String condicioninhumacionMin = (inhumacionMin!= null) ? (" and inhumacion >= "+inhumacionMin) : "";
+		String condicionMacizoMin = (macizoMin != null ) ? (" and macizo >= "+macizoMin ) : "";	
+		String condicioninhumacionMax = (inhumacionMax != null) ? (" and inhumacion <= " + inhumacionMax) : "";
+		String condicioninhumacionMin = (inhumacionMin != null) ? (" and inhumacion >= "+inhumacionMin) : "";
 		String condicionSepulturaMax = (sepulturaMax != null) ? ("  and sepultura <= " + sepulturaMax) : "";
-		String condicionSepulturaMin = (sepulturaMin!= null) ? (" and sepultura >= "+sepulturaMin ) : "";
-		String condicionCheckMacizobis = (macizo_BIS!= null && macizo_BIS) ? (" and bis_macizo = "+macizo_BIS ) : "";
+		String condicionSepulturaMin = (sepulturaMin != null) ? (" and sepultura >= "+sepulturaMin ) : "";
+		String condicionCheckMacizobis = (macizo_bis != null && macizo_bis) ? (" and bis_macizo = "+macizo_bis ) : "";
 		String condicionCheckbis = (bis!= null && bis) ? (" and bis = "+bis ) : "";
 		String condicion =  condicionSubsector 
 							+ condicionSeccion

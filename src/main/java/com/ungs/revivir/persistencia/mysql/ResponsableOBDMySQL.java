@@ -13,7 +13,7 @@ import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Responsable;
 import com.ungs.revivir.persistencia.interfaces.ResponsableOBD;
 
-public class ResponsableOBDMYSQL extends OBD implements ResponsableOBD{
+public class ResponsableOBDMySQL extends OBD implements ResponsableOBD{
 	private final String campos = "cliente, fallecido, observaciones";
 	private final String tabla = "rev_responsables";
 	

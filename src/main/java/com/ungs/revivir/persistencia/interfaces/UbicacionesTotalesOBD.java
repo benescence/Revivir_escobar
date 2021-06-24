@@ -6,7 +6,7 @@ import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 
 public interface UbicacionesTotalesOBD {
-	
+
 	public List<Ubicacion>selectByrangos(
 			Integer nichoMax,
 			Integer nichoMin,
@@ -29,7 +29,7 @@ public interface UbicacionesTotalesOBD {
 			String seccion,
 			SubSector subsector,
 			Boolean macizo_BIS,
-			Boolean bis);
-
+			Boolean bis
+		);
 
 }

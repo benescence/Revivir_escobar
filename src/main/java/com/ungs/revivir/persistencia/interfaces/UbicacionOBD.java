@@ -33,7 +33,8 @@ public interface UbicacionOBD {
 	
 	public Ubicacion selectByUbicacion(Ubicacion ubicacion);
 	
-	public List<Ubicacion>selectByrangos(Integer nichoMax,
+	public List<Ubicacion>selectByrangos(
+			Integer nichoMax,
 			Integer nichoMin,
 			Integer circMax,
 			Integer circMin,
@@ -52,5 +53,7 @@ public interface UbicacionOBD {
 			Integer macizoMax,
 			Integer macizoMin,
 			String seccion,
-			SubSector subsector);
+			SubSector subsector
+		);
+	
 }

@@ -31,6 +31,7 @@ public interface UbicacionLibreOBD {
 			String seccion,
 			SubSector subsector,
 			Boolean macizo_BIS,
-			Boolean bis);
+			Boolean bis
+		);
 
 }

@@ -17,7 +17,6 @@ import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.FallecidoOBD;
 import com.ungs.revivir.persistencia.interfaces.PagoOBD;
 import com.ungs.revivir.persistencia.interfaces.UbicacionLibreOBD;
-import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
 import com.ungs.revivir.persistencia.interfaces.UbicacionesTotalesOBD;
 
 public class Busqueda {
@@ -29,7 +28,7 @@ public class Busqueda {
 		apellido = Verificador.anular(apellido);
 		
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
-		return obd.selectByNombreApellidoCOD(nombres, apellido, /*DNI*/cod_fallecido);
+		return obd.selectByNombreApellidoCOD(nombres, apellido, cod_fallecido);
 	}
 
 	public static List<Ubicacion> ubicaciones(
@@ -49,9 +48,9 @@ public class Busqueda {
 			boolean bis) {
 		
 		// Si esta activado el FLAG mostrar trae todas las ubicaciones posibles (no importa si esta ocupado o no)
-		UbicacionesTotalesOBD obd1 = FactoryOBD.crearUbicacionesTotalesOBD();
+		UbicacionesTotalesOBD obd_total = FactoryOBD.crearUbicacionTotalOBD();
 		if(mostrar)
-			return obd1.selectByrangos(
+			return obd_total.selectByrangos(
 					nichoMax, nichoMin,
 					circMax, circMin,
 					filaMax, filaMin,
@@ -65,8 +64,8 @@ public class Busqueda {
 					subSector,macizo_bis, bis);
 
 		// De lo contrario trae solo las ubicaciones que no estan ocupado
-		UbicacionLibreOBD obd = FactoryOBD.crearUbicacionLibreOBD();
-		return obd.selectByrangos(
+		UbicacionLibreOBD obd_libre = FactoryOBD.crearUbicacionLibreOBD();
+		return obd_libre.selectByrangos(
 				nichoMax, nichoMin,
 				circMax, circMin,
 				filaMax, filaMin,
@@ -82,37 +81,19 @@ public class Busqueda {
 	}
 
 
-	//public static List<Pago> pagos(Cliente cliente, Fallecido fallecido, Date fecha) throws Exception {
 	public static List<Pago> pagos( Fallecido fallecido, Date fecha) throws Exception {
+
 		// validaciones
 		if (fallecido == null && fecha == null)
 			throw new Exception("Debe llenar al menos uno de los 2 campos: cliente, fallecido o fecha.");
 		
-		/*if (fallecido != null)
-			throw new Exception("Esta busqueda se hace  por fallecido, "
-					+".\nPresione limpiar para volver a empezar.");*/
-		
-		
 		// Solo lleno solo la fecha
 		if ( fallecido == null)
 			return PagoManager.traerPorFecha(fecha);
-			
-		/*// Solo lleno solo el cliente
-		if (fallecido == null)
-			return traerPagos(cliente, fecha);*/
 		else
 			return traerPagos(fallecido, fecha);
 	}
 		
-	/*public static List<Pago> traerPagos(Cliente cliente, Date fecha) {
-		if (fecha == null)
-			return Relacionador.traerPagos(cliente);
-		else {
-			PagoOBD obd = FactoryOBD.crearPagoOBD();
-			return obd.selectByClienteFecha(cliente, fecha);
-		}
-	}*/
-
 	public static List<Pago> traerPagos(Fallecido fallecido, Date fecha) {
 		List<Pago> pagos = Relacionador.traerPagos(fallecido);
 		
