@@ -41,10 +41,6 @@
 					<text><![CDATA[Cematorio Escobar]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="5" y="43" width="125" height="17" uuid="4645c0df-e3c7-405e-b7c4-d100118e49ff"/>
-					<text><![CDATA[Revivir Constructora S.R.L. ]]></text>
-				</staticText>
-				<staticText>
 					<reportElement x="5" y="64" width="165" height="46" uuid="48dc2fc6-8e8c-4c90-8c45-be67836cccfb"/>
 					<text><![CDATA[Mateo Gelves 2350 - Belén de Escobar , CP: 1625                             Tel :  0348-4514124]]></text>
 				</staticText>
