@@ -223,10 +223,7 @@ public class ControladorAltaCompleta implements ClienteSeleccionable, Controlado
 
 		// La seccion es siempre mayuscula y solo puede ser una letra
 		String seccion = (ventana.getSeccion().isEnabled() ? ventana.getSeccion().getTextField().getText() : null);
-		if (seccion != null && seccion.length() == 1)
-			seccion = seccion.toUpperCase().charAt(0) + "";
-		else 
-			throw new Exception("La seccion debe ser una letra: ["+seccion+"]");
+	
 
 		
 		Ubicacion ubicacion = new Ubicacion(-1, subsector, otroCementerio, nicho, fila, seccion,
