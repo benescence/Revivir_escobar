@@ -1,5 +1,6 @@
 package com.ungs.revivir.vista.menu.fallecidos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JInternalFrame;
@@ -16,6 +17,7 @@ import com.ungs.revivir.vista.util.Popup;
 public class ControladorFallecidosABM implements ControladorInterno, FallecidoInvocable {
 	private VentanaFallecidosABM ventana;
 	private ControladorPrincipal invocador;
+	private List<Fallecido> listaLocal = new ArrayList<Fallecido>();
 	
 	public ControladorFallecidosABM(ControladorPrincipal invocador) {
 		this.invocador = invocador;
@@ -40,6 +42,7 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 			if (lista.isEmpty())
 				Popup.mostrar("No se ha encontrado ningun fallecido con los parametros ingresados.");
 			ventana.getTabla().recargar(lista);
+			listaLocal = lista;
 			
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
@@ -78,6 +81,7 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 					Popup.confirmar("¿Seguro de que desea eliminar los registros seleccionados?"))
 				FallecidoManager.eliminar(lista.get(0));
 			
+			listaLocal.remove(lista.get(0));
 			actualizarFallecidos();
 		
 		} catch (Exception e) {
@@ -108,7 +112,7 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 
 	@Override
 	public void actualizarFallecidos() {
-		ventana.getTabla().recargar(FallecidoManager.traerTodo());
+		ventana.getTabla().recargar(listaLocal);
 	}
 
 }

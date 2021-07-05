@@ -11,6 +11,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import com.ungs.revivir.negocios.Sesion;
+import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.vista.menu.cargos.ControladorCargoABM;
 import com.ungs.revivir.vista.menu.cargos.cargoAM.CargoInvocable;
 import com.ungs.revivir.vista.menu.cargos.cargoAM.ControladorCargoAM;
@@ -137,6 +138,12 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 	public void actualizarClientes() {
 		if (controladorInterno instanceof ClienteInvocable)
 			((ClienteInvocable)controladorInterno).actualizarClientes();
+	}
+
+	@Override
+	public void actualizarClientes(Cliente nuevo) {
+		if (controladorInterno instanceof ClienteInvocable)
+			((ClienteInvocable)controladorInterno).actualizarClientes(nuevo);
 	}
 
 	@Override

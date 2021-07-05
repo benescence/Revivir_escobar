@@ -64,4 +64,8 @@ public class TablaFallecidos extends JTable{
 		return registros;
 	}
 
+	public List<Fallecido> getLista() {
+		return fallecidos;
+	}
+	
 }
