@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 
 import com.ungs.revivir.negocios.Sesion;
 import com.ungs.revivir.persistencia.entidades.Cliente;
+import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.vista.menu.cargos.ControladorCargoABM;
 import com.ungs.revivir.vista.menu.cargos.cargoAM.CargoInvocable;
 import com.ungs.revivir.vista.menu.cargos.cargoAM.ControladorCargoAM;
@@ -176,6 +177,11 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 			((FallecidoInvocable)controladorInterno).actualizarFallecidos();
 	}	
 
+	@Override
+	public void actualizarFallecidos(Fallecido fallecido) {
+		if (controladorInterno instanceof FallecidoInvocable)
+			((FallecidoInvocable)controladorInterno).actualizarFallecidos(fallecido);
+	}
 	@Override
 	public void actualizarPagos() {
 		if (controladorInterno instanceof PagoInvocable)

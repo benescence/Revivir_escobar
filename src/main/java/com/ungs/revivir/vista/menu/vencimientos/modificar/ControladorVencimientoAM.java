@@ -30,8 +30,8 @@ public class ControladorVencimientoAM implements ControladorExterno {
 			ubicacion.setVencimiento(vencimiento);
 			UbicacionManager.modificar(ubicacion);
 			ventana.dispose();
+			invocador.actualizarVencimientos();
 			invocador.mostrar();
-
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
 		}

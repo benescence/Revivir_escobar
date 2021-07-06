@@ -25,6 +25,7 @@ import com.ungs.revivir.vista.visualizador.clientes.ControladorVerClientes;
 public class ControladorVencimientos implements ControladorInterno, Visualizable, VencimientoInvocable {
 	private ControladorPrincipal invocador;
 	private VentanaVencimientos ventana;
+	private List<Ubicacion> listaLocal = new ArrayList<Ubicacion>();
 	
 	public ControladorVencimientos(ControladorPrincipal invocador) {
 		this.invocador = invocador;
@@ -68,6 +69,7 @@ public class ControladorVencimientos implements ControladorInterno, Visualizable
 		Date hasta = ventana.getHasta().getValor();
 		List<Ubicacion> vencimientos = VencimientoManager.buscarVencimientos(subSector, desde, hasta);
 		ventana.getTabla().recargar(vencimientos);
+		listaLocal=vencimientos;
 	}	
 
 	private void imprimirLista() {	
@@ -109,7 +111,13 @@ public class ControladorVencimientos implements ControladorInterno, Visualizable
 
 	@Override
 	public void actualizarVencimientos() {
-		buscar();
+		ventana.getTabla().recargar(listaLocal); 
+	}
+
+	@Override
+	public void actualizarVencimientos(Ubicacion nueva) {
+		listaLocal.add(nueva);
+		ventana.getTabla().recargar(listaLocal); 
 	}
 
 }

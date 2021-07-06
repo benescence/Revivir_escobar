@@ -114,5 +114,9 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 	public void actualizarFallecidos() {
 		ventana.getTabla().recargar(listaLocal);
 	}
-
+	@Override
+	public void actualizarFallecidos(Fallecido nuevo) {
+		listaLocal.add(nuevo);
+		ventana.getTabla().recargar(listaLocal);
+	}
 }
